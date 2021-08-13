@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,15 @@
 		2047B0E026C6B4F0003B7E64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2047B0DE26C6B4F0003B7E64 /* LaunchScreen.storyboard */; };
 		2047B0EB26C6B4F1003B7E64 /* HW_9__Caching_with_Realm_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B0EA26C6B4F1003B7E64 /* HW_9__Caching_with_Realm_Tests.swift */; };
 		2047B0F626C6B4F1003B7E64 /* HW_9__Caching_with_Realm_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B0F526C6B4F1003B7E64 /* HW_9__Caching_with_Realm_UITests.swift */; };
+		2047B10526C6B616003B7E64 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10426C6B616003B7E64 /* Alerts.swift */; };
+		2047B10726C6B634003B7E64 /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10626C6B634003B7E64 /* Links.swift */; };
+		2047B10926C6B655003B7E64 /* AllStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10826C6B655003B7E64 /* AllStructs.swift */; };
+		2047B10B26C6B678003B7E64 /* TodayLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10A26C6B678003B7E64 /* TodayLoader.swift */; };
+		2047B10D26C6B692003B7E64 /* DaysLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10C26C6B692003B7E64 /* DaysLoader.swift */; };
+		2047B10F26C6B6C4003B7E64 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10E26C6B6C4003B7E64 /* ViewModel.swift */; };
+		2047B11126C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */; };
+		2047B11326C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */; };
+		4AAE6A90DF793B9F9FC9362A /* Pods_HW_9__Caching_with_Realm_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +58,17 @@
 		2047B0F126C6B4F1003B7E64 /* HW_9 (Caching with Realm)UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HW_9 (Caching with Realm)UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2047B0F526C6B4F1003B7E64 /* HW_9__Caching_with_Realm_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HW_9__Caching_with_Realm_UITests.swift; sourceTree = "<group>"; };
 		2047B0F726C6B4F1003B7E64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2047B10426C6B616003B7E64 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		2047B10626C6B634003B7E64 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
+		2047B10826C6B655003B7E64 /* AllStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllStructs.swift; sourceTree = "<group>"; };
+		2047B10A26C6B678003B7E64 /* TodayLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayLoader.swift; sourceTree = "<group>"; };
+		2047B10C26C6B692003B7E64 /* DaysLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysLoader.swift; sourceTree = "<group>"; };
+		2047B10E26C6B6C4003B7E64 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlamofireTableViewCell.swift; sourceTree = "<group>"; };
+		2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCellAlam.swift; sourceTree = "<group>"; };
+		5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9__Caching_with_Realm_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).debug.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).debug.xcconfig"; sourceTree = "<group>"; };
+		E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).release.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AAE6A90DF793B9F9FC9362A /* Pods_HW_9__Caching_with_Realm_.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +104,8 @@
 				2047B0E926C6B4F1003B7E64 /* HW_9 (Caching with Realm)Tests */,
 				2047B0F426C6B4F1003B7E64 /* HW_9 (Caching with Realm)UITests */,
 				2047B0D126C6B4EF003B7E64 /* Products */,
+				8502A8CF59D768A147E0949D /* Pods */,
+				FDCE3F9F245DA821B47D3829 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +122,18 @@
 		2047B0D226C6B4EF003B7E64 /* HW_9 (Caching with Realm) */ = {
 			isa = PBXGroup;
 			children = (
-				2047B0D326C6B4EF003B7E64 /* AppDelegate.swift */,
-				2047B0D526C6B4EF003B7E64 /* SceneDelegate.swift */,
-				2047B0D726C6B4EF003B7E64 /* ViewController.swift */,
-				2047B0D926C6B4EF003B7E64 /* Main.storyboard */,
-				2047B0DC26C6B4F0003B7E64 /* Assets.xcassets */,
-				2047B0DE26C6B4F0003B7E64 /* LaunchScreen.storyboard */,
 				2047B0E126C6B4F0003B7E64 /* Info.plist */,
+				2047B10326C6B5EB003B7E64 /* Other */,
+				2047B0D926C6B4EF003B7E64 /* Main.storyboard */,
+				2047B10426C6B616003B7E64 /* Alerts.swift */,
+				2047B10626C6B634003B7E64 /* Links.swift */,
+				2047B0D726C6B4EF003B7E64 /* ViewController.swift */,
+				2047B10E26C6B6C4003B7E64 /* ViewModel.swift */,
+				2047B10826C6B655003B7E64 /* AllStructs.swift */,
+				2047B10A26C6B678003B7E64 /* TodayLoader.swift */,
+				2047B10C26C6B692003B7E64 /* DaysLoader.swift */,
+				2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */,
+				2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */,
 			);
 			path = "HW_9 (Caching with Realm)";
 			sourceTree = "<group>";
@@ -128,6 +156,34 @@
 			path = "HW_9 (Caching with Realm)UITests";
 			sourceTree = "<group>";
 		};
+		2047B10326C6B5EB003B7E64 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				2047B0D326C6B4EF003B7E64 /* AppDelegate.swift */,
+				2047B0D526C6B4EF003B7E64 /* SceneDelegate.swift */,
+				2047B0DC26C6B4F0003B7E64 /* Assets.xcassets */,
+				2047B0DE26C6B4F0003B7E64 /* LaunchScreen.storyboard */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		8502A8CF59D768A147E0949D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */,
+				E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FDCE3F9F245DA821B47D3829 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +191,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2047B0FA26C6B4F1003B7E64 /* Build configuration list for PBXNativeTarget "HW_9 (Caching with Realm)" */;
 			buildPhases = (
+				4F9E2FABFE94557DC70BFA29 /* [CP] Check Pods Manifest.lock */,
 				2047B0CC26C6B4EF003B7E64 /* Sources */,
 				2047B0CD26C6B4EF003B7E64 /* Frameworks */,
 				2047B0CE26C6B4EF003B7E64 /* Resources */,
+				8903E651FB30B8F413EAD6D0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,14 +311,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4F9E2FABFE94557DC70BFA29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HW_9 (Caching with Realm)-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8903E651FB30B8F413EAD6D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm)-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm)-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm)-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2047B0CC26C6B4EF003B7E64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2047B10726C6B634003B7E64 /* Links.swift in Sources */,
+				2047B10F26C6B6C4003B7E64 /* ViewModel.swift in Sources */,
 				2047B0D826C6B4EF003B7E64 /* ViewController.swift in Sources */,
 				2047B0D426C6B4EF003B7E64 /* AppDelegate.swift in Sources */,
+				2047B10D26C6B692003B7E64 /* DaysLoader.swift in Sources */,
+				2047B11326C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift in Sources */,
+				2047B11126C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift in Sources */,
+				2047B10526C6B616003B7E64 /* Alerts.swift in Sources */,
+				2047B10926C6B655003B7E64 /* AllStructs.swift in Sources */,
 				2047B0D626C6B4EF003B7E64 /* SceneDelegate.swift in Sources */,
+				2047B10B26C6B678003B7E64 /* TodayLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +541,7 @@
 		};
 		2047B0FB26C6B4F1003B7E64 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -452,6 +561,7 @@
 		};
 		2047B0FC26C6B4F1003B7E64 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
