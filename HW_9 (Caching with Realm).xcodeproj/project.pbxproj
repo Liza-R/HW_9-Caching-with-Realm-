@@ -23,6 +23,7 @@
 		2047B10F26C6B6C4003B7E64 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10E26C6B6C4003B7E64 /* ViewModel.swift */; };
 		2047B11126C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */; };
 		2047B11326C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */; };
+		2047B11526C6B93F003B7E64 /* RealmWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B11426C6B93F003B7E64 /* RealmWeather.swift */; };
 		4AAE6A90DF793B9F9FC9362A /* Pods_HW_9__Caching_with_Realm_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		2047B10E26C6B6C4003B7E64 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlamofireTableViewCell.swift; sourceTree = "<group>"; };
 		2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCellAlam.swift; sourceTree = "<group>"; };
+		2047B11426C6B93F003B7E64 /* RealmWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmWeather.swift; sourceTree = "<group>"; };
 		5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9__Caching_with_Realm_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).debug.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).debug.xcconfig"; sourceTree = "<group>"; };
 		E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).release.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).release.xcconfig"; sourceTree = "<group>"; };
@@ -127,13 +129,14 @@
 				2047B0D926C6B4EF003B7E64 /* Main.storyboard */,
 				2047B10426C6B616003B7E64 /* Alerts.swift */,
 				2047B10626C6B634003B7E64 /* Links.swift */,
-				2047B0D726C6B4EF003B7E64 /* ViewController.swift */,
-				2047B10E26C6B6C4003B7E64 /* ViewModel.swift */,
 				2047B10826C6B655003B7E64 /* AllStructs.swift */,
 				2047B10A26C6B678003B7E64 /* TodayLoader.swift */,
 				2047B10C26C6B692003B7E64 /* DaysLoader.swift */,
+				2047B0D726C6B4EF003B7E64 /* ViewController.swift */,
+				2047B10E26C6B6C4003B7E64 /* ViewModel.swift */,
 				2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */,
 				2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */,
+				2047B11426C6B93F003B7E64 /* RealmWeather.swift */,
 			);
 			path = "HW_9 (Caching with Realm)";
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				2047B0D426C6B4EF003B7E64 /* AppDelegate.swift in Sources */,
 				2047B10D26C6B692003B7E64 /* DaysLoader.swift in Sources */,
 				2047B11326C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift in Sources */,
+				2047B11526C6B93F003B7E64 /* RealmWeather.swift in Sources */,
 				2047B11126C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift in Sources */,
 				2047B10526C6B616003B7E64 /* Alerts.swift in Sources */,
 				2047B10926C6B655003B7E64 /* AllStructs.swift in Sources */,
