@@ -28,9 +28,22 @@ class ViewController: UIViewController {
         allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[], [], [], [], []],
         countInfo = 0
     
+    let todayInfoRealm = RealmWeather().returnTodayInfo()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cityNameAlam = searchTF.text!
+        
+        for i in todayInfoRealm{
+            today_Label_Alam.text = "TODAY: \(i.dateToday)"
+            temp_Label_Alam.text = "\(i.cityNameTemp)"
+            min_temp_Label_alam.text = "\(i.tempTMin)"
+            max_Label_Alam.text = "\(i.tempTMax)"
+            feels_like_Label_Alam.text = "\(i.tempFL)"
+            descript_Label_Alam.text = "\(i.descr)"
+            //icon_Image_Alam.image = i.icon
+        }
+        
         let viewModelAlam = ViewModelAlamofire()
         viewModelAlam.weatherDelegateAlam = self
         self.weather_Table_Alamofire.reloadData()

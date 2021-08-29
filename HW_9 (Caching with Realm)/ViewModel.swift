@@ -44,6 +44,18 @@ class ViewModelAlamofire{
                         switch response.result {
                             case .success(let responseData):
                                 self.weatherDelegateAlam?.uploadToday(todayAlam: i, description: descript, image: UIImage(data: responseData!, scale:1) ?? .checkmark)
+                                let ic = UIImage(data: responseData!, scale:1) ?? .checkmark,
+                                date = NSDate(timeIntervalSince1970: TimeInterval(i.dt)),
+                                        dayTimePeriodFormatter = DateFormatter()
+                                dayTimePeriodFormatter.dateFormat = "YYYY-MM-dd"
+                                let dateString = dayTimePeriodFormatter.string(from: date as Date),
+                                    todayInfo = "\(String(describing: Int(i.main!.temp - 273.15)))°C \(i.name)",
+                                    min_temp = "Min: \(String(describing: Int(i.main!.temp_min - 273.15)))°C",
+                                    max_temp = "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C",
+                                    feelsL_temp = "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C"
+                                
+                                RealmWeather().loadingTodayInfo(descr: descript, icon: ic, cityName: todayInfo, tempFL: feelsL_temp, tempTMax: max_temp, tempTMin: min_temp, dt: dateString)
+                                
                             case .failure(let error):
                                 print("error--->",error)
                         }
