@@ -52,9 +52,10 @@ class ViewModelAlamofire{
                                     todayInfo = "\(String(describing: Int(i.main!.temp - 273.15)))°C \(i.name)",
                                     min_temp = "Min: \(String(describing: Int(i.main!.temp_min - 273.15)))°C",
                                     max_temp = "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C",
-                                    feelsL_temp = "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C"
+                                    feelsL_temp = "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C",
+                                    dataIcon = NSData(data: ic.pngData()!)
                                 
-                                RealmWeather().loadingTodayInfo(descr: descript, icon: ic, cityName: todayInfo, tempFL: feelsL_temp, tempTMax: max_temp, tempTMin: min_temp, dt: dateString)
+                                RealmWeather().loadingTodayInfo(descr: descript, icon: dataIcon, cityName: todayInfo, tempFL: feelsL_temp, tempTMax: max_temp, tempTMin: min_temp, dt: dateString)
                                 
                             case .failure(let error):
                                 print("error--->",error)

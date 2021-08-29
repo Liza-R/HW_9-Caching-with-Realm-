@@ -41,7 +41,7 @@ class ViewController: UIViewController {
             max_Label_Alam.text = "\(i.tempTMax)"
             feels_like_Label_Alam.text = "\(i.tempFL)"
             descript_Label_Alam.text = "\(i.descr)"
-            //icon_Image_Alam.image = i.icon
+            icon_Image_Alam.image = UIImage(data: i.icon as Data)
         }
         
         let viewModelAlam = ViewModelAlamofire()

@@ -16,7 +16,7 @@ class TodayWeather: Object{
     @objc dynamic var tempTMin = ""
     @objc dynamic var descr = ""
     @objc dynamic var dateToday = ""
-   // @objc dynamic var icon: UIImage = .checkmark
+    @objc dynamic var icon = NSData()
 }
 
 /*class FiveDaysWeather: Object{
@@ -37,7 +37,7 @@ class RealmWeather{
     */
     let realm = try! Realm()
     
-    func loadingTodayInfo(descr: String, icon: UIImage, cityName: String, tempFL: String, tempTMax: String, tempTMin: String, dt: String){
+    func loadingTodayInfo(descr: String, icon: NSData, cityName: String, tempFL: String, tempTMax: String, tempTMin: String, dt: String){
         
         let infoT = TodayWeather()
         
@@ -47,7 +47,7 @@ class RealmWeather{
         infoT.tempTMin = tempTMin
         infoT.descr = descr
         infoT.dateToday = dt
-        //infoT.icon = icon
+        infoT.icon = icon
         
         try! realm.write{
             realm.add(infoT)
