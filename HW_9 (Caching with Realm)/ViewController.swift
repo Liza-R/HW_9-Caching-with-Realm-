@@ -7,7 +7,7 @@
 
 import UIKit
 
-var cityNameAlam: String = "" // needed for search city
+var cityNameAlam: String = ""
 
 class ViewController: UIViewController {
 
@@ -27,35 +27,51 @@ class ViewController: UIViewController {
         allDataAlam: [String] = [],
         allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[], [], [], [], []],
         countInfo = 0
-    
+    let todayInfoRealm = RealmWeather().returnTodayInfo()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        cityNameAlam = searchTF.text!
         print("Загрузка приложения")
-        let todayInfoRealm = RealmWeather().returnTodayInfo()
-        if todayInfoRealm.isEmpty{
-            uploadEmptyTodayInfo()
-        }
-        //uploadTodayInfo()
+        cityNameAlam = searchTF.text!
         
-       /* ViewModelAlamofire().weatherDelegateAlam = self
-        self.weather_Table_Alamofire.reloadData()
+       // if todayInfoRealm.isEmpty{
+            print("Инфы о тек погоде нет")
+            uploadEmptyTodayInfo()
+            updateInfo()
+       /* }else{
+            print("Таблица не пуста")
+            uploadLastInfo()
+        }*/
+        
+       /* self.weather_Table_Alamofire.reloadData()
         self.weather_Table_Alamofire.dataSource = self*/
         print("Конец загрузки приложения")
     }
-    
+
     func uploadEmptyTodayInfo(){
-        print("Начало вставки инфо в лейблы")
-        ViewModelAlamofire().uploadToday()
-        today_Label_Alam.text = "Loading..."
+        print("Старт функ для первой загрузки")
+       // today_Label_Alam.text = "Loading..."
         temp_Label_Alam.text = "Loading..."
         min_temp_Label_alam.text = "Loading..."
         max_Label_Alam.text = "Loading..."
         feels_like_Label_Alam.text = "Loading..."
         descript_Label_Alam.text = "Loading..."
         icon_Image_Alam.image = .none
-       /* let todayInfoRealm = RealmWeather().returnTodayInfo()
-        for i in todayInfoRealm{
+        print("Информация помещена в UI")
+        print("Конец функ для первой загрузки")
+    }
+    
+    func uploadLastInfo(){
+        print("Начало вставки последней инфо let")
+        if todayInfoRealm.isEmpty{
+            print("Data NF")
+        }else{
+            print("OK")
+            for i in todayInfoRealm{
+   
+            }
+        }
+        /*for i in todayInfoRealm{
             today_Label_Alam.text = "TODAY: \(i.dateToday)"
             temp_Label_Alam.text = "\(i.cityNameTemp)"
             min_temp_Label_alam.text = "\(i.tempTMin)"
@@ -63,8 +79,15 @@ class ViewController: UIViewController {
             feels_like_Label_Alam.text = "\(i.tempFL)"
             descript_Label_Alam.text = "\(i.descr)"
             icon_Image_Alam.image = UIImage(data: i.icon as Data)
-        }*/
-        print("Конец вставки инфо в лейблы")
+        }
+        print("Информация из таблицы помещена в UI")*/
+        print("Конец вставки последней инфо в let")
+    }
+    
+    func updateInfo(){
+        print("Начало обновления инфо о тек погоде")
+        ViewModelAlamofire().uploadToday()
+        print("Конец обновления инфо о тек погоде")
     }
     
     @IBAction func searchButton(_ sender: Any) {

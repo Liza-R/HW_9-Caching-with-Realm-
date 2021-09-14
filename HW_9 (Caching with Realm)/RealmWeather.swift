@@ -37,7 +37,7 @@ class RealmWeather{
     */
     let realm = try! Realm()
     
-    func loadingTodayInfo(descr: String, icon: NSData, cityName: String, tempFL: String, tempTMax: String, tempTMin: String, dt: String){
+    func savingTodayInfo(descr: String, icon: NSData, cityName: String, tempFL: String, tempTMax: String, tempTMin: String, dt: String){
         print("Начало сохранения информации о тек погоде")
         let infoT = TodayWeather()
         
@@ -53,6 +53,7 @@ class RealmWeather{
             realm.add(infoT)
         }
         print("Конец сохранения информации о тек погоде")
+        ViewController().uploadLastInfo()
     }
     
     func returnTodayInfo() -> Results<TodayWeather>{
