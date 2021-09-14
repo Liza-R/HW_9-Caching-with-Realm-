@@ -28,12 +28,33 @@ class ViewController: UIViewController {
         allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[], [], [], [], []],
         countInfo = 0
     
-    let todayInfoRealm = RealmWeather().returnTodayInfo()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         cityNameAlam = searchTF.text!
+        print("Загрузка приложения")
+        let todayInfoRealm = RealmWeather().returnTodayInfo()
+        if todayInfoRealm.isEmpty{
+            uploadEmptyTodayInfo()
+        }
+        //uploadTodayInfo()
         
+       /* ViewModelAlamofire().weatherDelegateAlam = self
+        self.weather_Table_Alamofire.reloadData()
+        self.weather_Table_Alamofire.dataSource = self*/
+        print("Конец загрузки приложения")
+    }
+    
+    func uploadEmptyTodayInfo(){
+        print("Начало вставки инфо в лейблы")
+        ViewModelAlamofire().uploadToday()
+        today_Label_Alam.text = "Loading..."
+        temp_Label_Alam.text = "Loading..."
+        min_temp_Label_alam.text = "Loading..."
+        max_Label_Alam.text = "Loading..."
+        feels_like_Label_Alam.text = "Loading..."
+        descript_Label_Alam.text = "Loading..."
+        icon_Image_Alam.image = .none
+       /* let todayInfoRealm = RealmWeather().returnTodayInfo()
         for i in todayInfoRealm{
             today_Label_Alam.text = "TODAY: \(i.dateToday)"
             temp_Label_Alam.text = "\(i.cityNameTemp)"
@@ -42,13 +63,10 @@ class ViewController: UIViewController {
             feels_like_Label_Alam.text = "\(i.tempFL)"
             descript_Label_Alam.text = "\(i.descr)"
             icon_Image_Alam.image = UIImage(data: i.icon as Data)
-        }
-        
-        let viewModelAlam = ViewModelAlamofire()
-        viewModelAlam.weatherDelegateAlam = self
-        self.weather_Table_Alamofire.reloadData()
-        self.weather_Table_Alamofire.dataSource = self
+        }*/
+        print("Конец вставки инфо в лейблы")
     }
+    
     @IBAction func searchButton(_ sender: Any) {
         let alert = Alerts()
         if searchTF.text?.isEmpty == true{
@@ -82,25 +100,6 @@ extension ViewController: uploadWeatherAlamofire{
         weather_Table_Alamofire.reloadData()
     }
     
-    func uploadToday(todayAlam: DaysInfo.All_Day_Info, description: String, image: UIImage) {
-        let date = NSDate(timeIntervalSince1970: TimeInterval(todayAlam.dt)),
-            dayTimePeriodFormatter = DateFormatter()
-        dayTimePeriodFormatter.dateFormat = "YYYY-MM-dd"
-
-        let dateString = dayTimePeriodFormatter.string(from: date as Date),
-            todayInfo = "\(String(describing: Int(todayAlam.main!.temp - 273.15)))°C \(cityNameAlam)",
-            min_temp = "Min: \(String(describing: Int(todayAlam.main!.temp_min - 273.15)))°C",
-            max_temp = "Max: \(String(describing: Int(todayAlam.main!.temp_max - 273.15)))°C",
-            feelsL_temp = "Feels like: \(String(describing: Int(todayAlam.main!.feels_like - 273.15)))°C"
-        self.min_temp_Label_alam.text = "\(min_temp)"
-        self.max_Label_Alam.text = "\(max_temp)"
-        self.feels_like_Label_Alam.text = "\(feelsL_temp)"
-        self.descript_Label_Alam.text = description
-        self.icon_Image_Alam.image = image
-        self.today_Label_Alam.text = "TODAY: \(dateString)"
-        self.temp_Label_Alam.text = "\(todayInfo)"
-        weather_Table_Alamofire.reloadData()
-    }
 }
 
 extension ViewController: UITableViewDataSource{
