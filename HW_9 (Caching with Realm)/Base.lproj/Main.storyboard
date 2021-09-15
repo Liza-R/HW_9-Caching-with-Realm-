@@ -136,6 +136,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AqG-p3-0XJ">
                                 <rect key="frame" x="0.0" y="229" width="414" height="633"/>
                                 <color key="backgroundColor" red="0.21005952359999999" green="0.1074528322" blue="0.19651535149999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="IQQ-lS-ZOF">
+                                    <rect key="frame" x="0.0" y="229.00000034679067" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="2" indentationWidth="0.0" reuseIdentifier="weather_Alamofire" rowHeight="180" id="Y7A-ZC-cEO" customClass="WeatherAlamofireTableViewCell" customModule="HW_9__Caching_with_Realm_" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="180"/>

@@ -92,15 +92,7 @@ class ViewController: UIViewController {
     
     func uploadEmptyForecastInfo(){
         print("---Старт функции для первой загрузки прогноза погоды")
-        dayForTableAlam.append("Loading table forecast...")
-        /*self.today_Label_Alam.text = "TODAY: \(i.dateToday)"
-        self.temp_Label_Alam.text = "\(i.cityNameTemp)"
-        self.min_temp_Label_alam.text = "\(i.tempTMin)"
-        self.max_Label_Alam.text = "\(i.tempTMax)"
-        self.feels_like_Label_Alam.text = "\(i.tempFL)"
-        self.descript_Label_Alam.text = "\(i.descr)"
-        self.icon_Image_Alam.image = UIImage(data: i.icon as Data)*/
-        print("----Инфо помещена в UI таблицы прогноза погоды")
+        dayForTableAlam.append("Loading weather forecast ...")
         print("---Конец функции для первой загрузки прогноза погоды")
     }
     
