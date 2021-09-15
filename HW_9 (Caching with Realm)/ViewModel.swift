@@ -9,24 +9,25 @@ import Foundation
 import UIKit
 import Alamofire
 
-protocol uploadWeatherAlamofire{
+/*protocol uploadWeatherAlamofire{
     func uploadFiveDays(allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]], daysForTable: [String])
-}
+}*/
 
 class ViewModelAlamofire{
     private var today_Alam: [DaysInfo.All_Day_Info] = [],
                 five_days_Alam: [DaysInfo.All_Five_Days_Info] = []
     
-    var weatherDelegateAlam: uploadWeatherAlamofire?
+   // var weatherDelegateAlam: uploadWeatherAlamofire?
 
-    init(){
+   /* init(){
         uploadDays()
     }
+    */
     
     func uploadToday(){
-        print("----Начало работы функции viewModel")
+        print("----Начало работы функции viewModel для загрузки инфо о текущей погоде")
         TodayLoader().loadTodayAlamofire { today in
-            print("-----Начало загрузки информации о текущей погоде")
+            print("-----Начало загрузки инфо о текущей погоде")
             self.today_Alam = today
             DispatchQueue.main.async {
                 for i in today{
@@ -63,16 +64,17 @@ class ViewModelAlamofire{
                     }
                 }
             }
-            print("-----Конец загрузки информации о текущей погоде")
+            print("-----Конец загрузки инфо о текущей погоде")
         }
-        print("----Конец работы функции viewModel")
+        print("----Конец работы функции viewModel для загрузки инфо о текущей погоде")
     }
     
     func uploadDays(){
+        print("----Начало работы функции viewModel для загрузки инфо о прогнозе погоды")
         var temp_: [String] = [],
             descript: [String] = [],
             iconLinkAlam: [String] = [],
-            iconsAlam: [UIImage] = [],
+            iconsAlam: [NSData] = [],
             data: [String] = [],
             time: [String] = [],
             cod: String = "",
@@ -87,6 +89,7 @@ class ViewModelAlamofire{
         let result_Al = formatter.string(from: date)
 
         TodayFiveDaysLoader().loadFiveDaysAlamofire { five_days in
+            print("-----Начало загрузки инфо о прогнозе погоды")
             self.five_days_Alam = five_days
             DispatchQueue.main.async {
                 for i in five_days{
@@ -109,7 +112,8 @@ class ViewModelAlamofire{
                     AF.request(URL(string: url_icon)!, method: .get).response{ response in
                         switch response.result {
                             case .success(let responseData):
-                                iconsAlam.append(UIImage(data: responseData!, scale: 1) ?? .checkmark)
+                                let ic = UIImage(data: responseData!, scale: 1) ?? .checkmark
+                                iconsAlam.append(NSData(data: ic.pngData()!))
                                 var moving = false
                                 if iconsAlam.count == temp_.count{
                                     moving = true
@@ -124,14 +128,17 @@ class ViewModelAlamofire{
                                     for _ in 0...dayForTable_F.count - 2{
                                         allWeatherInfo_Alam.append([])
                                     }
-                                    for (y, u) in dayForTable_F.enumerated(){
+                                   /* for (y, u) in dayForTable_F.enumerated(){
                                         for (i, j) in allData_F.enumerated(){
                                             if u == j{
                                                 allWeatherInfo_Alam[y].append(DaysInfo.forBaseTableAlam(temper_Alam: temp_[i], icon_Alam: iconsAlam[i], descript_Alam: descript[i], data_Alam: data[i], time_Alam: time[i]))
                                             }
                                         }
-                                    }
-                                    self.weatherDelegateAlam?.uploadFiveDays(allData_: allData_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam, daysForTable: dayForTable_F)
+                                    }*/
+                                    print("------Вызов функции для сохранения инфо о прогнозе погоды в Realm")
+                                    RealmWeather().savingFiveDaysInfo(dates: data, cod: cod, descripts: descript, icons: iconsAlam, temps: temp_, times: time)
+                                    print("------Конец вызова функции для сохранения инфо о прогнозе погоды в Realm")
+                                    //self.weatherDelegateAlam?.uploadFiveDays(allData_: allData_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam, daysForTable: dayForTable_F)
                                 }
                             case .failure(let error):
                                 print("error--->",error)
@@ -139,6 +146,8 @@ class ViewModelAlamofire{
                     }
                 }
             }
+            print("-----Конец загрузки инфо о прогнозе погоды")
         }
+        print("----Конец работы функции viewModel для загрузки информации о прогнозе погоды")
     }
 }
