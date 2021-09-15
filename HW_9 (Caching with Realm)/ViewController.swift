@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
-var cityNameAlam: String = ""
+var cityNameAlam: String = "",
+    savingTodayInfoVar = BehaviorRelay<Bool>(value: false)
 
 class ViewController: UIViewController {
 
@@ -27,67 +30,62 @@ class ViewController: UIViewController {
         allDataAlam: [String] = [],
         allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[], [], [], [], []],
         countInfo = 0
-    let todayInfoRealm = RealmWeather().returnTodayInfo()
+    let todayInfoRealm = RealmWeather().returnTodayInfo(),
+        disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Загрузка приложения")
+        print("-Загрузка приложения")
         cityNameAlam = searchTF.text!
         
-       // if todayInfoRealm.isEmpty{
-            print("Инфы о тек погоде нет")
+       if todayInfoRealm.isEmpty{
+            print("--Инфы о тек погоде нет")
             uploadEmptyTodayInfo()
             updateInfo()
-       /* }else{
-            print("Таблица не пуста")
-            uploadLastInfo()
-        }*/
-        
+        }else{
+            print("--Таблица не пуста")
+        }
+        savingTodayInfoVar.asObservable().subscribe { status in
+            if status.element == true{
+                for i in self.todayInfoRealm{
+                    self.today_Label_Alam.text = "TODAY: \(i.dateToday)"
+                    self.temp_Label_Alam.text = "\(i.cityNameTemp)"
+                    self.min_temp_Label_alam.text = "\(i.tempTMin)"
+                    self.max_Label_Alam.text = "\(i.tempTMax)"
+                    self.feels_like_Label_Alam.text = "\(i.tempFL)"
+                    self.descript_Label_Alam.text = "\(i.descr)"
+                    self.icon_Image_Alam.image = UIImage(data: i.icon as Data)
+                }
+                print("Информация из Realm помещена в UI")
+            }else{
+                print("New information about the current weather is not loaded")
+            }
+            
+        }.disposed(by: disposeBag)
        /* self.weather_Table_Alamofire.reloadData()
-        self.weather_Table_Alamofire.dataSource = self*/
-        print("Конец загрузки приложения")
+         self.weather_Table_Alamofire.dataSource = self
+         */
+        
+        print("-Конец загрузки приложения")
     }
 
     func uploadEmptyTodayInfo(){
-        print("Старт функ для первой загрузки")
-       // today_Label_Alam.text = "Loading..."
+        print("---Старт функ для первой загрузки")
+        today_Label_Alam.text = "Loading..."
         temp_Label_Alam.text = "Loading..."
         min_temp_Label_alam.text = "Loading..."
         max_Label_Alam.text = "Loading..."
         feels_like_Label_Alam.text = "Loading..."
         descript_Label_Alam.text = "Loading..."
         icon_Image_Alam.image = .none
-        print("Информация помещена в UI")
-        print("Конец функ для первой загрузки")
-    }
-    
-    func uploadLastInfo(){
-        print("Начало вставки последней инфо let")
-        if todayInfoRealm.isEmpty{
-            print("Data NF")
-        }else{
-            print("OK")
-            for i in todayInfoRealm{
-   
-            }
-        }
-        /*for i in todayInfoRealm{
-            today_Label_Alam.text = "TODAY: \(i.dateToday)"
-            temp_Label_Alam.text = "\(i.cityNameTemp)"
-            min_temp_Label_alam.text = "\(i.tempTMin)"
-            max_Label_Alam.text = "\(i.tempTMax)"
-            feels_like_Label_Alam.text = "\(i.tempFL)"
-            descript_Label_Alam.text = "\(i.descr)"
-            icon_Image_Alam.image = UIImage(data: i.icon as Data)
-        }
-        print("Информация из таблицы помещена в UI")*/
-        print("Конец вставки последней инфо в let")
+        print("----Информация помещена в UI")
+        print("---Конец функ для первой загрузки")
     }
     
     func updateInfo(){
-        print("Начало обновления инфо о тек погоде")
+        print("---Начало обновления инфо о тек погоде")
         ViewModelAlamofire().uploadToday()
-        print("Конец обновления инфо о тек погоде")
+        print("---Конец обновления инфо о тек погоде")
     }
     
     @IBAction func searchButton(_ sender: Any) {

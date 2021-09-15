@@ -26,9 +26,9 @@ class ViewModelAlamofire{
     }
     
     func uploadToday(){
-        print("Начало работы функции viewModel")
+        print("----Начало работы функции viewModel")
         TodayLoader().loadTodayAlamofire { today in
-            print("Начало загрузки информации о текущей погоде")
+            print("-----Начало загрузки информации о текущей погоде")
             self.today_Alam = today
             DispatchQueue.main.async {
                 for i in today{
@@ -56,9 +56,9 @@ class ViewModelAlamofire{
                                     max_temp = "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C",
                                     feelsL_temp = "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C",
                                     dataIcon = NSData(data: ic.pngData()!)
-                                print("Вызов функции Realm")
+                                print("------Вызов функции Realm")
                                 RealmWeather().savingTodayInfo(descr: descript, icon: dataIcon, cityName: todayInfo, tempFL: feelsL_temp, tempTMax: max_temp, tempTMin: min_temp, dt: dateString)
-                                print("Конец вызова функции Realm")
+                                print("------Конец вызова функции Realm")
                                 
                             case .failure(let error):
                                 print("error--->",error)
@@ -66,9 +66,9 @@ class ViewModelAlamofire{
                     }
                 }
             }
-            print("Конец загрузки информации о текущей погоде")
+            print("-----Конец загрузки информации о текущей погоде")
         }
-        print("Конец работы функции viewModel")
+        print("----Конец работы функции viewModel")
     }
     
     func uploadDays(){
