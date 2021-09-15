@@ -38,7 +38,7 @@ class RealmWeather{
     let realm = try! Realm()
     
     func savingTodayInfo(descr: String, icon: NSData, cityName: String, tempFL: String, tempTMax: String, tempTMin: String, dt: String){
-        print("-------Начало сохранения информации о тек погоде")
+        print("-------Начало сохранения в Realm информации о текущей погоде")
         let infoT = TodayWeather()
         
         infoT.cityNameTemp = cityName
@@ -53,13 +53,13 @@ class RealmWeather{
             realm.add(infoT)
         }
         savingTodayInfoVar.accept(true)
-        print("-------Конец сохранения информации о тек погоде")
+        print("-------Конец сохранения информации в Realm о текущей погоде")
     }
     
     func returnTodayInfo() -> Results<TodayWeather>{
-        print("Начало возврата информации из таблицы")
+        print("Начало создания модели Realm")
         let modelToday = realm.objects(TodayWeather.self)
-        print("Конец возврата информации из таблицы")
+        print("Конец создания модели Realm")
         return modelToday
     }
     

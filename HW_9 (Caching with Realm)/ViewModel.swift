@@ -10,7 +10,6 @@ import UIKit
 import Alamofire
 
 protocol uploadWeatherAlamofire{
-   // func uploadToday()
     func uploadFiveDays(allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]], daysForTable: [String])
 }
 
@@ -21,7 +20,6 @@ class ViewModelAlamofire{
     var weatherDelegateAlam: uploadWeatherAlamofire?
 
     init(){
-        //uploadToday()
         uploadDays()
     }
     
@@ -45,7 +43,6 @@ class ViewModelAlamofire{
                     AF.request(URL(string: url_icon_Al)!, method: .get).response{ response in
                         switch response.result {
                             case .success(let responseData):
-                                //self.weatherDelegateAlam?.uploadToday(todayAlam: i, description: descript, image: UIImage(data: responseData!, scale:1) ?? .checkmark)
                                 let ic = UIImage(data: responseData!, scale:1) ?? .checkmark,
                                 date = NSDate(timeIntervalSince1970: TimeInterval(i.dt)),
                                         dayTimePeriodFormatter = DateFormatter()
@@ -56,9 +53,9 @@ class ViewModelAlamofire{
                                     max_temp = "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C",
                                     feelsL_temp = "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C",
                                     dataIcon = NSData(data: ic.pngData()!)
-                                print("------Вызов функции Realm")
+                                print("------Вызов функции для сохранения инфо о текущей погоде в Realm")
                                 RealmWeather().savingTodayInfo(descr: descript, icon: dataIcon, cityName: todayInfo, tempFL: feelsL_temp, tempTMax: max_temp, tempTMin: min_temp, dt: dateString)
-                                print("------Конец вызова функции Realm")
+                                print("------Конец вызова функции для сохранения инфо о текущей погоде в Realm")
                                 
                             case .failure(let error):
                                 print("error--->",error)
