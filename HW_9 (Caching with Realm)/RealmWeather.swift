@@ -19,13 +19,32 @@ class TodayWeather: Object{
     @objc dynamic var icon = NSData()
 }
 
+class UnDayForTableClass: Object {
+    @objc dynamic var un_date = ""
+}
+
+class DayForTableClass: Object {
+    @objc dynamic var date = ""
+}
+class DescriptForTableClass: Object {
+    @objc dynamic var descript = ""
+}
+class TimeForTableClass: Object {
+    @objc dynamic var time = ""
+}
+class TempForTableClass: Object {
+    @objc dynamic var temp = ""
+    //@objc dynamic var icon = UIImage()
+}
+
 class FiveDaysWeather: Object{
     @objc dynamic var cod = ""
     let icons = List<Data>(),
-        descripts = List<String>(),
-        dates = List<String>(),
-        times = List<String>(),
-        temps = List<String>()
+        descripts = List<DescriptForTableClass>(),
+        un_dates = List<UnDayForTableClass>(),
+        all_dates = List<DayForTableClass>(),
+        times = List<TimeForTableClass>(),
+        temps = List<TempForTableClass>()
 }
 
 class RealmWeather{
@@ -57,7 +76,7 @@ class RealmWeather{
         return modelToday
     }
     
-    func savingFiveDaysInfo(dates: [String], cod: String, descripts: [String], icons: [NSData], temps: [String], times: [String]){
+    func savingFiveDaysInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], icons: [NSData], temps: [String], times: [String]){
         print("-------Начало сохранения в Realm инфо прогноза погоды")
         let infoFD = FiveDaysWeather()
 
@@ -66,17 +85,30 @@ class RealmWeather{
         for i in icons{
             infoFD.icons.append(i as Data)
         }
-        for i in dates{
-            infoFD.dates.append(i)
+        for i in uniqDates{
+            let un_day = UnDayForTableClass()
+            un_day.un_date = i
+            infoFD.un_dates.append(un_day)
+        }
+        for i in allDates{
+            let day = DayForTableClass()
+            day.date = i
+            infoFD.all_dates.append(day)
         }
         for i in descripts{
-            infoFD.descripts.append(i)
+            let descript = DescriptForTableClass()
+            descript.descript = i
+            infoFD.descripts.append(descript)
         }
         for i in temps{
-            infoFD.temps.append(i)
+            let temp = TempForTableClass()
+            temp.temp = i
+            infoFD.temps.append(temp)
         }
         for i in times{
-            infoFD.times.append(i)
+            let time = TimeForTableClass()
+            time.time = i
+            infoFD.times.append(time)
         }
 
         try! realm.write{
@@ -89,6 +121,7 @@ class RealmWeather{
     func returnFiveDaysInfo() -> Results<FiveDaysWeather>{
         print("Начало создания модели прогноза погоды Realm")
         let modelFiveDays = realm.objects(FiveDaysWeather.self)
+        print(modelFiveDays)
         print("Конец создания модели прогноза погоды Realm")
         return modelFiveDays
     }

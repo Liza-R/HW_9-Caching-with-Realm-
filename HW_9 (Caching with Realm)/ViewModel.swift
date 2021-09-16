@@ -9,21 +9,10 @@ import Foundation
 import UIKit
 import Alamofire
 
-/*protocol uploadWeatherAlamofire{
-    func uploadFiveDays(allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]], daysForTable: [String])
-}*/
-
 class ViewModelAlamofire{
     private var today_Alam: [DaysInfo.All_Day_Info] = [],
                 five_days_Alam: [DaysInfo.All_Five_Days_Info] = []
-    
-   // var weatherDelegateAlam: uploadWeatherAlamofire?
 
-   /* init(){
-        uploadDays()
-    }
-    */
-    
     func uploadToday(){
         print("----Начало работы функции viewModel для загрузки инфо о текущей погоде")
         TodayLoader().loadTodayAlamofire { today in
@@ -136,9 +125,10 @@ class ViewModelAlamofire{
                                         }
                                     }*/
                                     print("------Вызов функции для сохранения инфо о прогнозе погоды в Realm")
-                                    RealmWeather().savingFiveDaysInfo(dates: data, cod: cod, descripts: descript, icons: iconsAlam, temps: temp_, times: time)
+                                    var uniqDays = Array(Set(data))
+                                    uniqDays = uniqDays.sorted()
+                                    RealmWeather().savingFiveDaysInfo(uniqDates: uniqDays, allDates: data, cod: cod, descripts: descript, icons: iconsAlam, temps: temp_, times: time)
                                     print("------Конец вызова функции для сохранения инфо о прогнозе погоды в Realm")
-                                    //self.weatherDelegateAlam?.uploadFiveDays(allData_: allData_F, cod: cod, allWeatherInfo_: allWeatherInfo_Alam, daysForTable: dayForTable_F)
                                 }
                             case .failure(let error):
                                 print("error--->",error)

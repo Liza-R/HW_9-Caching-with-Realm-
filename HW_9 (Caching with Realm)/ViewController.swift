@@ -26,11 +26,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var weather_Table_Alamofire: UITableView!
     
     var codFiveDays = "",
-        tableRowDataAlam: String = "",
-        dayForTableAlam: [String] = [],
-        allDataAlam: [String] = [],
-        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[], [], [], [], []],
-        countInfo = 0
+        uniqDatesForTable: [String] = [],
+        allDates: [String] = [],
+        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[], [], [], [], []]
+    
     let todayInfoRealm = RealmWeather().returnTodayInfo(),
         forecastInfoRealm = RealmWeather().returnFiveDaysInfo(),
         disposeBag = DisposeBag()
@@ -38,41 +37,58 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("-Загрузка приложения")
-        cityNameAlam = searchTF.text!
-        if todayInfoRealm.isEmpty && forecastInfoRealm.isEmpty{
-            print("--Инфо о текущей погоде нет. БД пуста")
-            uploadEmptyTodayInfo()
-            uploadEmptyForecastInfo()
-            updateTodayInfo()
-        }else{
-            print("--БД текущей погоды не пуста. Вставка последней загруженной инфо")
-            uploadNOEmptyTodayInfo()
-            updateFDInfo()
-        }
-        changingUIs_loadingNewData()
+        cityNameAlam = "Moscow"
         
-        self.weather_Table_Alamofire.reloadData()
+        switch todayInfoRealm.isEmpty {
+        case true:
+            print("--Инфо о текущей погодe в БД нет")
+            uploadEmptyTodayInfo()
+            updateTodayInfo()
+        case false:
+            print("--Инфо о текущей погодe в БД есть")
+            uploadNOEmptyTodayInfo()
+            updateTodayInfo()
+        }
+        
+        switch forecastInfoRealm.isEmpty {
+        case true:
+            print("--Инфо о прогнозе погоды в БД нет")
+            uploadEmptyForecastInfo()
+            updateFDInfo()
+        case false:
+            print("--Инфо о прогнозе погоды в БД есть")
+            updateFDInfo()
+            uploadNOEmptyForecastInfo()
+        }
+        
+        changingUIs_loadingNewTodayData()
+        changingUIs_loadingNewTForecastData()
+        
         self.weather_Table_Alamofire.dataSource = self
+        self.weather_Table_Alamofire.reloadData()
         
         print("-Конец загрузки приложения")
     }
 
-    func changingUIs_loadingNewData(){
+    func changingUIs_loadingNewTodayData(){
         savingTodayInfoVar.asObservable().subscribe { status in
             if status.element == true{
-                for i in self.todayInfoRealm{
-                    self.today_Label_Alam.text = "TODAY: \(i.dateToday)"
-                    self.temp_Label_Alam.text = "\(i.cityNameTemp)"
-                    self.min_temp_Label_alam.text = "\(i.tempTMin)"
-                    self.max_Label_Alam.text = "\(i.tempTMax)"
-                    self.feels_like_Label_Alam.text = "\(i.tempFL)"
-                    self.descript_Label_Alam.text = "\(i.descr)"
-                    self.icon_Image_Alam.image = UIImage(data: i.icon as Data)
-                }
-                print("--> Новая инфо о текущей погоде загружена")
-                print("--------Новая инфо о текущей погоде из Realm помещена в UIs")
+                self.uploadNOEmptyTodayInfo()
+                print("---------> Новая инфо о текущей погоде загружена")
             }else{
-                print("--> Новая инфо о текущей погоде не загружена")
+                print("---------> Новая инфо о текущей погоде не загружена")
+            }
+        }.disposed(by: disposeBag)
+    }
+    
+    func changingUIs_loadingNewTForecastData(){
+        savingFiveDaysInfoVar.asObservable().subscribe { status in
+            if status.element == true{
+                self.uploadNOEmptyForecastInfo()
+                print("---------> Новая инфо о прогнозе погоды загружена")
+                self.weather_Table_Alamofire.reloadData()
+            }else{
+                print("---------> Новая инфо о прогнозе погоды не загружена")
             }
         }.disposed(by: disposeBag)
     }
@@ -92,12 +108,12 @@ class ViewController: UIViewController {
     
     func uploadEmptyForecastInfo(){
         print("---Старт функции для первой загрузки прогноза погоды")
-        dayForTableAlam.append("Loading weather forecast ...")
+        uniqDatesForTable.append("Loading weather forecast for")
         print("---Конец функции для первой загрузки прогноза погоды")
     }
     
     func uploadNOEmptyTodayInfo(){
-        print("---Старт функции для повторной загрузки")
+        print("---Старт функции для повторной загрузки текущей погоды")
         for i in self.todayInfoRealm{
             self.today_Label_Alam.text = "TODAY: \(i.dateToday)"
             self.temp_Label_Alam.text = "\(i.cityNameTemp)"
@@ -107,10 +123,51 @@ class ViewController: UIViewController {
             self.descript_Label_Alam.text = "\(i.descr)"
             self.icon_Image_Alam.image = UIImage(data: i.icon as Data)
         }
-        print("----Инфо из Realm помещена в UI (не новая, последняя)")
-        print("---Конец функции для повторной загрузки")
+        print("----Инфо из Realm о текущей погоде помещена в UIs")
+        print("---Конец функции для повторной загрузки текущей погоды")
     }
-    
+//-----------------------------------------
+    func uploadNOEmptyForecastInfo(){
+        print("---Старт функции для повторной загрузки прогноза погоды")
+        for i in self.forecastInfoRealm{
+            self.codFiveDays = i.cod
+            self.uniqDatesForTable.removeAll()
+            for j in i.un_dates{
+                self.uniqDatesForTable.append("\(j.un_date)")
+            }
+            for j in i.all_dates{
+                allDates.append("\(j.date)")
+            }
+            for s in 0...uniqDatesForTable.count - 1{
+                for v in 0...allDates.count - 1{
+                    if uniqDatesForTable[s] == allDates[v]{
+                        var tempS: [String] = [],
+                            descrS: [String] = [],
+                            timeS: [String] = []
+                        for u in i.temps{
+                            tempS.append(u.temp)
+                        }
+                        for u in i.descripts{
+                            descrS.append(u.descript)
+                        }
+                        for u in i.times{
+                            timeS.append(u.time)
+                        }
+                        
+                        for u in 0...i.temps.count - 1{
+                            allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[u], icon_Alam: .checkmark, descript_Alam: descrS[u], data_Alam: "\(i.un_dates)", time_Alam: timeS[u]))
+                        }
+                        
+                        //print(allWeatherInfo_Alam)
+                        //allWeatherInfo_Alam[u][k].icon_Alam = i.icons as List<Data>
+                    }
+                }
+            }
+        }
+        print("----Инфо из Realm о прогнозе погоды помещена в UIs")
+        print("---Конец функции для повторной загрузки прогноза погоды")
+    }
+//-----------------------------------------
     func updateTodayInfo(){
         print("---Начало обновления инфо о текущей погоде")
         ViewModelAlamofire().uploadToday()
@@ -139,8 +196,6 @@ class ViewController: UIViewController {
                 codFiveDays = ""
                 updateTodayInfo()
                 updateFDInfo()
-                /*let viewModelAlam = ViewModelAlamofire()
-                viewModelAlam.weatherDelegateAlam = self*/
                 self.weather_Table_Alamofire.reloadData()
                 self.weather_Table_Alamofire.dataSource = self
             }
@@ -148,32 +203,22 @@ class ViewController: UIViewController {
     }
 }
 
-/*extension ViewController: uploadWeatherAlamofire{
-
-    func uploadFiveDays(allData_: [String], cod: String, allWeatherInfo_:  [[DaysInfo.forBaseTableAlam]], daysForTable: [String]) {
-        allWeatherInfo_Alam = allWeatherInfo_
-        codFiveDays = cod
-        allDataAlam = allData_
-        dayForTableAlam = daysForTable
-        weather_Table_Alamofire.reloadData()
-    }
-}*/
-
 extension ViewController: UITableViewDataSource{
 
     func tableView(_ tableView_Alam: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dayForTableAlam.count
+        return uniqDatesForTable.count
     }
 
     func tableView(_ tableView_Alam: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell_Alam = tableView_Alam.dequeueReusableCell(withIdentifier: "weather_Alamofire", for: indexPath) as! WeatherAlamofireTableViewCell
 
-        //cell_Alam.dataForCollectionAlam = allWeatherInfo_Alam[indexPath.row]
+        cell_Alam.dataForCollectionAlam = allWeatherInfo_Alam[indexPath.row]
+        //print(allWeatherInfo_Alam[indexPath.row])
         cell_Alam.collectionTableAlam.reloadData()
         
         //day cell
-        cell_Alam.day_Label_Alam.text = "\(dayForTableAlam[indexPath.row]) \(cityNameAlam)"
+        cell_Alam.day_Label_Alam.text = "\(uniqDatesForTable[indexPath.row]) \(cityNameAlam)"
         return cell_Alam
     }
 }
