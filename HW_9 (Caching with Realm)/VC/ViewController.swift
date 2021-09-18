@@ -28,10 +28,10 @@ class ViewController: UIViewController {
     var codFiveDays = "",
         uniqDatesForTable: [String] = [],
         allDates: [String] = [],
-        allWeatherInfo_Alam: [[DaysInfo.forBaseTableAlam]] = [[], [], [], [], []]
+        allWeatherInfo_Alam: [[LoadingStruct.InfoTableAlam]] = [[], [], [], [], []]
     
-    let todayInfoRealm = RealmWeather().returnTodayInfo(),
-        forecastInfoRealm = RealmWeather().returnFiveDaysInfo(),
+    let todayInfoRealm = ReturnInfoModels().returnCurrentInfo(realm: RealmWeather().realm),
+        forecastInfoRealm = ReturnInfoModels().returnForecastInfo(realm: RealmWeather().realm),
         disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -155,9 +155,8 @@ class ViewController: UIViewController {
             for u in i.times{
                 timeS.append(u.time)
             }
-            let uniq_timeS = Array(Set(timeS))
-
-            
+            //let uniq_timeS = Array(Set(timeS))
+        
             for s in 0...uniqDatesForTable.count - 1{
                 for v in 0...allDates.count - 1{
                     if uniqDatesForTable[s] == allDates[v]{
@@ -165,23 +164,24 @@ class ViewController: UIViewController {
                         switch s {
                         case 0:
                             for t in 0...7{
-                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+
                             }
                         case 1:
                             for t in 8...15{
-                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
                             }
                         case 2:
                             for t in 16...23{
-                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
                             }
                         case 3:
                             for t in 24...31{
-                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
                             }
                         case 4:
                             for t in 32...tempS.count - 1{
-                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
                             }
                         default:
                             print("---> ")
@@ -191,7 +191,6 @@ class ViewController: UIViewController {
                     }
                 }
             }
-            print("-------")
         }
         print("----Инфо из Realm о прогнозе погоды помещена в UIs")
         print("---Конец функции для повторной загрузки прогноза погоды")
@@ -243,7 +242,7 @@ extension ViewController: UITableViewDataSource{
         let cell_Alam = tableView_Alam.dequeueReusableCell(withIdentifier: "weather_Alamofire", for: indexPath) as! WeatherAlamofireTableViewCell
 
         cell_Alam.dataForCollectionAlam = allWeatherInfo_Alam[indexPath.row]
-        //print(allWeatherInfo_Alam[indexPath.row])
+        print(allWeatherInfo_Alam[indexPath.row].count)
         cell_Alam.collectionTableAlam.reloadData()
         
         //day cell

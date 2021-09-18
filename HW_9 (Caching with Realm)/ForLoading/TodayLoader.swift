@@ -10,10 +10,10 @@ import Alamofire
 
 class TodayLoader{
 
-    func loadTodayAlamofire(completion: @escaping ([DaysInfo.All_Day_Info]) -> Void){
+    func loadTodayAlamofire(completion: @escaping ([CurrentWeatherStruct.All_Day_Info]) -> Void){
         AF.request(URL(string: url_today_uploadAlam)!)
         .validate()
-            .responseDecodable(of: DaysInfo.All_Day_Info.self) { (response) in
+            .responseDecodable(of: CurrentWeatherStruct.All_Day_Info.self) { (response) in
           guard let today = response.value else { return }
                 completion([today])
         }

@@ -16,10 +16,10 @@ class WeatherAlamofireTableViewCell: UITableViewCell{
         collectionTableAlam.reloadData()
     }
     
-    var dataForCollectionAlam: [DaysInfo.forBaseTableAlam] = []
+    var dataForCollectionAlam: [LoadingStruct.InfoTableAlam] = []
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(dataForCollectionAlam.count)
+        //print(dataForCollectionAlam.count)
         return dataForCollectionAlam.count
     }
     
