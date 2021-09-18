@@ -15,7 +15,7 @@ class ViewModelAlamofire{
 
     func uploadToday(){
         print("----Начало работы функции viewModel для загрузки инфо о текущей погоде")
-        TodayLoader().loadTodayAlamofire { today in
+        CorrentLoader().loadCurrentInfo { today in
             print("-----Начало загрузки инфо о текущей погоде")
             self.today_Alam = today
             DispatchQueue.main.async {
@@ -77,7 +77,7 @@ class ViewModelAlamofire{
         
         let result_Al = formatter.string(from: date)
 
-        TodayFiveDaysLoader().loadFiveDaysAlamofire { five_days in
+        ForecastDaysLoader().loadForecastInfo { five_days in
             print("-----Начало загрузки инфо о прогнозе погоды")
             self.five_days_Alam = five_days
             DispatchQueue.main.async {

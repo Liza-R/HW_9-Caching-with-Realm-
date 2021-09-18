@@ -215,7 +215,7 @@ class ViewController: UIViewController {
         }
         else{
             cityNameAlam = searchTF.text!
-            let changeURL = changeURL()
+            let changeURL = ChangingURLs()
             changeURL.changeTodayURLAlam(cityName: cityNameAlam)
             changeURL.changeFiveDaysURLAlam(cityName: cityNameAlam)
             if codFiveDays == ""{

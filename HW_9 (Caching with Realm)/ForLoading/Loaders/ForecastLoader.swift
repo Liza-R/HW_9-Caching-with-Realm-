@@ -8,8 +8,8 @@
 import Foundation
 import Alamofire
 
-class TodayFiveDaysLoader{
-     func loadFiveDaysAlamofire(completion: @escaping ([ForecastWeatherStruct.All_Five_Days_Info]) -> Void){
+class ForecastDaysLoader{
+     func loadForecastInfo(completion: @escaping ([ForecastWeatherStruct.All_Five_Days_Info]) -> Void){
         
         AF.request(URL(string: url_fiveDays_uploadAlam)!)
         .validate()
