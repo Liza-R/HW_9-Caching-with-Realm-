@@ -10,8 +10,8 @@ import UIKit
 import Alamofire
 
 class ViewModelAlamofire{
-    private var today_Alam: [CurrentWeatherStruct.All_Day_Info] = [],
-                five_days_Alam: [ForecastWeatherStruct.All_Five_Days_Info] = []
+    private var today_Alam: [CurrentWeatherStruct.Current_Info] = [],
+                five_days_Alam: [ForecastWeatherStruct.Forecast_Info] = []
 
     func uploadToday(){
         print("----Начало работы функции viewModel для загрузки инфо о текущей погоде")

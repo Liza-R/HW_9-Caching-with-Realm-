@@ -9,10 +9,10 @@ import Foundation
 import Alamofire
 
 class CorrentLoader{
-    func loadCurrentInfo(completion: @escaping ([CurrentWeatherStruct.All_Day_Info]) -> Void){
-        AF.request(URL(string: url_today_uploadAlam)!)
+    func loadCurrentInfo(completion: @escaping ([CurrentWeatherStruct.Current_Info]) -> Void){
+        AF.request(URL(string: url_current_uploadAlam)!)
         .validate()
-            .responseDecodable(of: CurrentWeatherStruct.All_Day_Info.self) { (response) in
+            .responseDecodable(of: CurrentWeatherStruct.Current_Info.self) { (response) in
           guard let currentInfo = response.value else { return }
                 completion([currentInfo])
         }

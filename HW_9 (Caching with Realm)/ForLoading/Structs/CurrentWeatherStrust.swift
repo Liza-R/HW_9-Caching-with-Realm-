@@ -8,7 +8,7 @@
 import Foundation
 
 class CurrentWeatherStruct{
-    struct All_Day_Info: Decodable{
+    struct Current_Info: Decodable{
         var weather: [Weather?],
         main: Main?,
         dt: Int64,

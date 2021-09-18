@@ -8,7 +8,7 @@
 import Foundation
 
 class ForecastWeatherStruct{
-    struct All_Five_Days_Info: Decodable{
+    struct Forecast_Info: Decodable{
         var cod: String,
         list: [List?]
     }

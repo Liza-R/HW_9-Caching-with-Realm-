@@ -9,11 +9,11 @@ import Foundation
 import Alamofire
 
 class ForecastDaysLoader{
-     func loadForecastInfo(completion: @escaping ([ForecastWeatherStruct.All_Five_Days_Info]) -> Void){
+     func loadForecastInfo(completion: @escaping ([ForecastWeatherStruct.Forecast_Info]) -> Void){
         
-        AF.request(URL(string: url_fiveDays_uploadAlam)!)
+        AF.request(URL(string: url_forecast_uploadAlam)!)
         .validate()
-            .responseDecodable(of: ForecastWeatherStruct.All_Five_Days_Info.self) { (response) in
+            .responseDecodable(of: ForecastWeatherStruct.Forecast_Info.self) { (response) in
                     guard let five_days = response.value else { return }
                     completion([five_days])
         }
