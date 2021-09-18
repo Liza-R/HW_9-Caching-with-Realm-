@@ -66,6 +66,7 @@ class RealmWeather{
             realm.add(infoT)
         }
         savingTodayInfoVar.accept(true)
+        removeOldTodayInfo()
         print("-------Конец сохранения инфо в Realm о текущей погоде")
     }
     
@@ -74,6 +75,18 @@ class RealmWeather{
         let modelToday = realm.objects(TodayWeather.self)
         print("Конец создания модели текущей погоды Realm")
         return modelToday
+    }
+    
+    func removeOldTodayInfo(){
+        print("Начало удаления старой информации о текущей погоде Realm")
+        let modelToday = realm.objects(TodayWeather.self)
+        if modelToday.first != nil && modelToday.count > 2{
+            let oldInfo = modelToday.first!
+            try! realm.write {
+                realm.delete(oldInfo)
+            }
+        }
+        print("Конец удаления старой информации о текущей погоде Realm")
     }
     
     func savingFiveDaysInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], icons: [NSData], temps: [String], times: [String]){
@@ -115,14 +128,25 @@ class RealmWeather{
             realm.add(infoFD)
         }
         savingFiveDaysInfoVar.accept(true)
+        removeOldForecastInfo()
         print("-------Конец сохранения инфо прогноза погоды в Realm")
     }
     
     func returnFiveDaysInfo() -> Results<FiveDaysWeather>{
         print("Начало создания модели прогноза погоды Realm")
         let modelFiveDays = realm.objects(FiveDaysWeather.self)
-        print(modelFiveDays)
         print("Конец создания модели прогноза погоды Realm")
         return modelFiveDays
+    }
+    func removeOldForecastInfo(){
+        print("Начало удаления старой информации о прогнозе погоды Realm")
+        let modelFiveDays = realm.objects(FiveDaysWeather.self)
+        if modelFiveDays.first != nil && modelFiveDays.count > 2{
+            let oldInfo = modelFiveDays.first!
+            try! realm.write {
+                realm.delete(oldInfo)
+            }
+        }
+        print("Конец удаления старой информации о прогнозе погоды Realm")
     }
 }

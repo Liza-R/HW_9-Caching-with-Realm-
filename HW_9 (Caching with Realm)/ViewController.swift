@@ -136,33 +136,62 @@ class ViewController: UIViewController {
                 self.uniqDatesForTable.append("\(j.un_date)")
             }
             for j in i.all_dates{
-                allDates.append("\(j.date)")
+                for h in i.un_dates{
+                    if j.date == h.un_date{
+                        allDates.append("\(j.date)")
+                    }
+                }
             }
+            var timeS: [String] = [],
+                tempS: [String] = [],
+                descrS: [String] = []
+            
+            for u in i.temps{
+                tempS.append(u.temp)
+            }
+            for u in i.descripts{
+                descrS.append(u.descript)
+            }
+            for u in i.times{
+                timeS.append(u.time)
+            }
+            let uniq_timeS = Array(Set(timeS))
+
+            
             for s in 0...uniqDatesForTable.count - 1{
                 for v in 0...allDates.count - 1{
                     if uniqDatesForTable[s] == allDates[v]{
-                        var tempS: [String] = [],
-                            descrS: [String] = [],
-                            timeS: [String] = []
-                        for u in i.temps{
-                            tempS.append(u.temp)
+                        //print("if")
+                        switch s {
+                        case 0:
+                            for t in 0...7{
+                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                            }
+                        case 1:
+                            for t in 8...15{
+                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                            }
+                        case 2:
+                            for t in 16...23{
+                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                            }
+                        case 3:
+                            for t in 24...31{
+                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                            }
+                        case 4:
+                            for t in 32...tempS.count - 1{
+                                allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
+                            }
+                        default:
+                            print("---> ")
                         }
-                        for u in i.descripts{
-                            descrS.append(u.descript)
-                        }
-                        for u in i.times{
-                            timeS.append(u.time)
-                        }
-                        
-                        for u in 0...i.temps.count - 1{
-                            allWeatherInfo_Alam[s].append(DaysInfo.forBaseTableAlam(temper_Alam: tempS[u], icon_Alam: .checkmark, descript_Alam: descrS[u], data_Alam: "\(i.un_dates)", time_Alam: timeS[u]))
-                        }
-                        
                         //print(allWeatherInfo_Alam)
                         //allWeatherInfo_Alam[u][k].icon_Alam = i.icons as List<Data>
                     }
                 }
             }
+            print("-------")
         }
         print("----Инфо из Realm о прогнозе погоды помещена в UIs")
         print("---Конец функции для повторной загрузки прогноза погоды")

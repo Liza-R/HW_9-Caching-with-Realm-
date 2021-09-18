@@ -19,6 +19,7 @@ class WeatherAlamofireTableViewCell: UITableViewCell{
     var dataForCollectionAlam: [DaysInfo.forBaseTableAlam] = []
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(dataForCollectionAlam.count)
         return dataForCollectionAlam.count
     }
     
