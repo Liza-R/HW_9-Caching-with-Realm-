@@ -9,7 +9,9 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-var cityNameAlam: String = ""
+var cityNameAlam: String = "",
+    savingCurrentInfoVar = BehaviorRelay<Bool>(value: false),
+    savingForecastInfoVar = BehaviorRelay<Bool>(value: false)
 
 class ViewController: UIViewController {
 
@@ -69,7 +71,7 @@ class ViewController: UIViewController {
     }
 
     func changingUIs_loadingNewTodayData(){
-        RxVar().savingCurrentInfoVar.asObservable().subscribe { status in
+        savingCurrentInfoVar.asObservable().subscribe { status in
             if status.element == true{
                 self.uploadNOEmptyTodayInfo()
                 print("---------> Новая инфо о текущей погоде загружена")
@@ -80,7 +82,7 @@ class ViewController: UIViewController {
     }
     
     func changingUIs_loadingNewTForecastData(){
-        RxVar().savingForecastInfoVar.asObservable().subscribe { status in
+        savingForecastInfoVar.asObservable().subscribe { status in
             if status.element == true{
                 self.uploadNOEmptyForecastInfo()
                 print("---------> Новая инфо о прогнозе погоды загружена")

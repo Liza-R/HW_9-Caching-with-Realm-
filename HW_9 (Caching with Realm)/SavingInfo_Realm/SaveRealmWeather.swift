@@ -27,7 +27,7 @@ class RealmWeather{
         try! realm.write{
             realm.add(infoT)
         }
-        RxVar().savingCurrentInfoVar.accept(true)
+        savingCurrentInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldCurrentInfo()
         print("-------Конец сохранения инфо в Realm о текущей погоде")
     }
@@ -70,7 +70,7 @@ class RealmWeather{
         try! realm.write{
             realm.add(infoFD)
         }
-        RxVar().savingForecastInfoVar.accept(true)
+        savingForecastInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldForecastInfo()
         print("-------Конец сохранения инфо прогноза погоды в Realm")
     }
