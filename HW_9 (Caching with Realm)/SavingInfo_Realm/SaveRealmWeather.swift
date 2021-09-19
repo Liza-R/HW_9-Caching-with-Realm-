@@ -43,9 +43,7 @@ class RealmWeather{
             icon.icon = i
             infoFD.icons.append(icon)
         }
-        /*for i in icons{
-            infoFD.icons.append(i as Data)
-        }*/
+
         for i in uniqDates{
             let un_day = UnDayForTableClass()
             un_day.un_date = i
@@ -77,7 +75,6 @@ class RealmWeather{
         }
         savingForecastInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldForecastInfo()
-
         print("-------Конец сохранения инфо прогноза погоды в Realm")
     }
 }

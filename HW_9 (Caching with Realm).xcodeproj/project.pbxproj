@@ -22,7 +22,7 @@
 		2047B0E026C6B4F0003B7E64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2047B0DE26C6B4F0003B7E64 /* LaunchScreen.storyboard */; };
 		2047B0EB26C6B4F1003B7E64 /* HW_9__Caching_with_Realm_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B0EA26C6B4F1003B7E64 /* HW_9__Caching_with_Realm_Tests.swift */; };
 		2047B0F626C6B4F1003B7E64 /* HW_9__Caching_with_Realm_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B0F526C6B4F1003B7E64 /* HW_9__Caching_with_Realm_UITests.swift */; };
-		2047B10526C6B616003B7E64 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10426C6B616003B7E64 /* Alerts.swift */; };
+		2047B10526C6B616003B7E64 /* VC_Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10426C6B616003B7E64 /* VC_Alerts.swift */; };
 		2047B10726C6B634003B7E64 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10626C6B634003B7E64 /* URLs.swift */; };
 		2047B10926C6B655003B7E64 /* LoadingStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10826C6B655003B7E64 /* LoadingStruct.swift */; };
 		2047B10B26C6B678003B7E64 /* CurrentLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B10A26C6B678003B7E64 /* CurrentLoader.swift */; };
@@ -73,7 +73,7 @@
 		2047B0F126C6B4F1003B7E64 /* HW_9 (Caching with Realm)UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HW_9 (Caching with Realm)UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2047B0F526C6B4F1003B7E64 /* HW_9__Caching_with_Realm_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HW_9__Caching_with_Realm_UITests.swift; sourceTree = "<group>"; };
 		2047B0F726C6B4F1003B7E64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2047B10426C6B616003B7E64 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		2047B10426C6B616003B7E64 /* VC_Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VC_Alerts.swift; sourceTree = "<group>"; };
 		2047B10626C6B634003B7E64 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		2047B10826C6B655003B7E64 /* LoadingStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStruct.swift; sourceTree = "<group>"; };
 		2047B10A26C6B678003B7E64 /* CurrentLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLoader.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				2047B0D926C6B4EF003B7E64 /* Main.storyboard */,
-				2047B10426C6B616003B7E64 /* Alerts.swift */,
+				2047B10426C6B616003B7E64 /* VC_Alerts.swift */,
 				2047B0D726C6B4EF003B7E64 /* ViewController.swift */,
 				2047B10E26C6B6C4003B7E64 /* ViewModel.swift */,
 				200A097D26F6606F00D2F60B /* Collections */,
@@ -461,7 +461,7 @@
 				2047B11526C6B93F003B7E64 /* SaveRealmWeather.swift in Sources */,
 				200A098126F6612300D2F60B /* ForecastWeatherStruct.swift in Sources */,
 				2047B11126C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift in Sources */,
-				2047B10526C6B616003B7E64 /* Alerts.swift in Sources */,
+				2047B10526C6B616003B7E64 /* VC_Alerts.swift in Sources */,
 				2047B10926C6B655003B7E64 /* LoadingStruct.swift in Sources */,
 				2047B0D626C6B4EF003B7E64 /* SceneDelegate.swift in Sources */,
 				2047B10B26C6B678003B7E64 /* CurrentLoader.swift in Sources */,

@@ -128,12 +128,11 @@ class ViewController: UIViewController {
     }
 
     func uploadNOEmptyForecastInfo(){
-        print("---Старт функции для повторной загрузки прогноза погоды")
+        print("---Старт функции для загрузки прогноза погоды")
         var timeS: [String] = [],
             tempS: [String] = [],
             descrS: [String] = [],
             iconS: [NSData] = []
-
         for i in self.forecastInfoRealm{
             self.codFiveDays = i.cod
             self.uniqDatesForTable.removeAll()
@@ -174,7 +173,7 @@ class ViewController: UIViewController {
             }
         }
         print("----Инфо из Realm о прогнозе погоды помещена в UIs")
-        print("---Конец функции для повторной загрузки прогноза погоды")
+        print("---Конец функции для загрузки прогноза погоды")
     }
     func updateCurrentInfo(){
         print("---Начало обновления инфо о текущей погоде")
@@ -204,9 +203,9 @@ class ViewController: UIViewController {
             }else{
                 print(codFiveDays)
                 codFiveDays = ""
+                uploadEmptyCurrentInfo()
                 updateCurrentInfo()
-                updateForecastInfo()
-                uploadNOEmptyForecastInfo()
+                
                 self.weather_Table_Alamofire.reloadData()
                 self.weather_Table_Alamofire.dataSource = self
             }
@@ -217,7 +216,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource{
 
     func tableView(_ tableView_Alam: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allWeatherInfo_Alam.count
+        return uniqDatesForTable.count
     }
 
     func tableView(_ tableView_Alam: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -226,7 +225,7 @@ extension ViewController: UITableViewDataSource{
 
         cell_Alam.dataForCollectionAlam = allWeatherInfo_Alam[indexPath.row]
         cell_Alam.collectionTableAlam.reloadData()
-        
+
         //day cell
         cell_Alam.day_Label_Alam.text = "\(uniqDatesForTable[indexPath.row]) \(cityNameAlam)"
         return cell_Alam
