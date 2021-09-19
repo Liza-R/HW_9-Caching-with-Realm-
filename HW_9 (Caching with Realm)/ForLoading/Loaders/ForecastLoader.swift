@@ -14,8 +14,8 @@ class ForecastDaysLoader{
         AF.request(URL(string: url_forecast_uploadAlam)!)
         .validate()
             .responseDecodable(of: ForecastWeatherStruct.Forecast_Info.self) { (response) in
-                    guard let five_days = response.value else { return }
-                    completion([five_days])
+                    guard let forecast = response.value else { return }
+                    completion([forecast])
         }
     }
 }

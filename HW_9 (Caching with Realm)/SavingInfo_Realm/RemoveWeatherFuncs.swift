@@ -8,6 +8,7 @@
 import Foundation
 
 class RemoveOldWeatherInfo{
+
     func removeOldCurrentInfo(){
         print("Начало удаления старой информации о текущей погоде Realm")
         let modelCurrent = RealmWeather().realm.objects(CurrentWeather.self)

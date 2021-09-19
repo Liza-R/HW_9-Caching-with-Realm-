@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         switch todayInfoRealm.isEmpty {
         case true:
             print("--Инфо о текущей погодe в БД нет")
-            uploadEmptyTodayInfo()
+            EmptyInfo().uploadEmptyCurrentInfo(dateLabel: today_Label_Alam, tempLabel: temp_Label_Alam, minTempLabel: min_temp_Label_alam, maxTempLabel: max_Label_Alam, feels_likeTempLabel: feels_like_Label_Alam, descrLabel: descript_Label_Alam, icon: icon_Image_Alam)
             updateTodayInfo()
         case false:
             print("--Инфо о текущей погодe в БД есть")
@@ -93,18 +93,7 @@ class ViewController: UIViewController {
         }.disposed(by: disposeBag)
     }
     
-    func uploadEmptyTodayInfo(){
-        print("---Старт функции для первой загрузки текущей погоды")
-        today_Label_Alam.text = "Loading date..."
-        temp_Label_Alam.text = "Loading t..."
-        min_temp_Label_alam.text = "Loading min t..."
-        max_Label_Alam.text = "Loading max t..."
-        feels_like_Label_Alam.text = "Loading feels t..."
-        descript_Label_Alam.text = "Loading descript..."
-        icon_Image_Alam.image = .none
-        print("----Инфо о текущей погоде помещена в UI")
-        print("---Конец функции для первой загрузки текущей погоды")
-    }
+    
     
     func uploadEmptyForecastInfo(){
         print("---Старт функции для первой загрузки прогноза погоды")
@@ -216,8 +205,8 @@ class ViewController: UIViewController {
         else{
             cityNameAlam = searchTF.text!
             let changeURL = ChangingURLs()
-            changeURL.changeTodayURLAlam(cityName: cityNameAlam)
-            changeURL.changeFiveDaysURLAlam(cityName: cityNameAlam)
+            changeURL.changeCurrentURLAlam(cityName: cityNameAlam)
+            changeURL.changeForecastURLAlam(cityName: cityNameAlam)
             if codFiveDays == ""{
                 alert.alertCityNotFound(vc: self, cityName: cityNameAlam)
             }else{
