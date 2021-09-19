@@ -34,7 +34,7 @@ class RealmWeather{
 
     func savingForecastInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], icons: [NSData], temps: [String], times: [String]){
         print("-------Начало сохранения в Realm инфо прогноза погоды")
-        let infoFD = ForecastDaysWeather()
+        let infoFD = ForecastWeather()
 
         infoFD.cod = cod
 
@@ -72,6 +72,7 @@ class RealmWeather{
         }
         savingForecastInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldForecastInfo()
+
         print("-------Конец сохранения инфо прогноза погоды в Realm")
     }
 }

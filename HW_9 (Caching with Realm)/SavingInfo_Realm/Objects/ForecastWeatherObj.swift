@@ -26,7 +26,7 @@ class TempForTableClass: Object {
     //@objc dynamic var icon = UIImage()
 }
 
-class ForecastDaysWeather: Object{
+class ForecastWeather: Object{
     @objc dynamic var cod = ""
     let icons = List<Data>(),
         descripts = List<DescriptForTableClass>(),

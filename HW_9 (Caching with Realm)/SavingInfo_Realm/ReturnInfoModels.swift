@@ -15,9 +15,9 @@ class ReturnInfoModels{
         print("Конец создания модели текущей погоды Realm")
         return modelCurrent
     }
-    func returnForecastInfo(realm: Realm) -> Results<ForecastDaysWeather>{
+    func returnForecastInfo(realm: Realm) -> Results<ForecastWeather>{
         print("Начало создания модели прогноза погоды Realm")
-        let modelForecast = realm.objects(ForecastDaysWeather.self)
+        let modelForecast = realm.objects(ForecastWeather.self)
         print("Конец создания модели прогноза погоды Realm")
         return modelForecast
     }

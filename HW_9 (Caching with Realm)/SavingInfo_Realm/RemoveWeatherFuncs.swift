@@ -23,7 +23,7 @@ class RemoveOldWeatherInfo{
     
     func removeOldForecastInfo(){
         print("Начало удаления старой информации о прогнозе погоды Realm")
-        let modelForecast = RealmWeather().realm.objects(ForecastDaysWeather.self)
+        let modelForecast = RealmWeather().realm.objects(ForecastWeather.self)
         if modelForecast.first != nil && modelForecast.count > 2{
             let oldInfo = modelForecast.first!
             try! RealmWeather().realm.write {
