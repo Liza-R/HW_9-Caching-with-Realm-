@@ -42,11 +42,11 @@ class ViewController: UIViewController {
         switch todayInfoRealm.isEmpty {
         case true:
             print("--Инфо о текущей погодe в БД нет")
-            uploadEmptyTodayInfo()
+            uploadEmptyCurrentInfo()
             updateCurrentInfo()
         case false:
             print("--Инфо о текущей погодe в БД есть")
-            uploadNOEmptyTodayInfo()
+            uploadNOEmptyCurrentInfo()
             updateCurrentInfo()
         }
         
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
     func changingUIs_loadingNewCurrentData(){
         savingCurrentInfoVar.asObservable().subscribe { status in
             if status.element == true{
-                self.uploadNOEmptyTodayInfo()
+                self.uploadNOEmptyCurrentInfo()
                 print("---------> Новая инфо о текущей погоде загружена")
             }else{
                 print("---------> Новая инфо о текущей погоде не загружена")
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
         }.disposed(by: disposeBag)
     }
     
-    func uploadEmptyTodayInfo(){
+    func uploadEmptyCurrentInfo(){
         print("---Старт функции для первой загрузки текущей погоды")
         today_Label_Alam.text = "Loading date..."
         temp_Label_Alam.text = "Loading t..."
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
         print("---Конец функции для первой загрузки прогноза погоды")
     }
     
-    func uploadNOEmptyTodayInfo(){
+    func uploadNOEmptyCurrentInfo(){
         print("---Старт функции для повторной загрузки текущей погоды")
         for i in self.todayInfoRealm{
             self.today_Label_Alam.text = "TODAY: \(i.dateToday)"
@@ -157,51 +157,22 @@ class ViewController: UIViewController {
             for u in i.times{
                 timeS.append(u.time)
             }
-            //let uniq_timeS = Array(Set(timeS))
         }
 
         for _ in 0...self.uniqDatesForTable.count - 2{
             allWeatherInfo_Alam.append([])
         }
-
             for s in 0...uniqDatesForTable.count - 1{
                 for v in 0...allDates.count - 1{
                     if uniqDatesForTable[s] == allDates[v]{
-                        switch s {
-                        case 0:
-                            for t in 0...7{
-                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
-
-                            }
-                        case 1:
-                            for t in 8...15{
-                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
-                            }
-                        case 2:
-                            for t in 16...23{
-                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
-                            }
-                        case 3:
-                            for t in 24...31{
-                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
-                            }
-                        case 4:
-                            for t in 32...tempS.count - 1{
-                                allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[t], icon_Alam: .checkmark, descript_Alam: descrS[t], data_Alam: "", time_Alam: timeS[t]))
-                            }
-                        default:
-                            print("---> ")
-                        }
-                        //print(allWeatherInfo_Alam)
-                        //allWeatherInfo_Alam[u][k].icon_Alam = i.icons as List<Data>
-                    
+                    allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[v], icon_Alam: .checkmark, descript_Alam: descrS[v], data_Alam: "", time_Alam: timeS[v]))
                 }
             }
         }
+        print(allWeatherInfo_Alam.count)
         print("----Инфо из Realm о прогнозе погоды помещена в UIs")
         print("---Конец функции для повторной загрузки прогноза погоды")
     }
-//-----------------------------------------
     func updateCurrentInfo(){
         print("---Начало обновления инфо о текущей погоде")
         ViewModelAlamofire().uploadToday()
