@@ -126,12 +126,13 @@ class ViewController: UIViewController {
         print("----Инфо из Realm о текущей погоде помещена в UIs")
         print("---Конец функции для повторной загрузки текущей погоды")
     }
-//-----------------------------------------
+
     func uploadNOEmptyForecastInfo(){
         print("---Старт функции для повторной загрузки прогноза погоды")
         var timeS: [String] = [],
             tempS: [String] = [],
-            descrS: [String] = []
+            descrS: [String] = [],
+            iconS: [NSData] = []
 
         for i in self.forecastInfoRealm{
             self.codFiveDays = i.cod
@@ -157,6 +158,9 @@ class ViewController: UIViewController {
             for u in i.times{
                 timeS.append(u.time)
             }
+            for u in i.icons{
+                iconS.append(u.icon)
+            }
         }
 
         for _ in 0...self.uniqDatesForTable.count - 2{
@@ -165,11 +169,10 @@ class ViewController: UIViewController {
             for s in 0...uniqDatesForTable.count - 1{
                 for v in 0...allDates.count - 1{
                     if uniqDatesForTable[s] == allDates[v]{
-                    allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[v], icon_Alam: .checkmark, descript_Alam: descrS[v], data_Alam: "", time_Alam: timeS[v]))
+                        allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[v], icon_Alam: UIImage(data: iconS[v] as Data) ?? .checkmark, descript_Alam: descrS[v], data_Alam: "", time_Alam: timeS[v]))
                 }
             }
         }
-        print(allWeatherInfo_Alam.count)
         print("----Инфо из Realm о прогнозе погоды помещена в UIs")
         print("---Конец функции для повторной загрузки прогноза погоды")
     }
@@ -186,6 +189,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func searchButton(_ sender: Any) {
+        print("Start searching city")
         let alert = Alerts()
         if searchTF.text?.isEmpty == true{
             alert.alertNilTF(vc: self)
@@ -198,9 +202,11 @@ class ViewController: UIViewController {
             if codFiveDays == ""{
                 alert.alertCityNotFound(vc: self, cityName: cityNameAlam)
             }else{
+                print(codFiveDays)
                 codFiveDays = ""
                 updateCurrentInfo()
                 updateForecastInfo()
+                uploadNOEmptyForecastInfo()
                 self.weather_Table_Alamofire.reloadData()
                 self.weather_Table_Alamofire.dataSource = self
             }
@@ -219,7 +225,6 @@ extension ViewController: UITableViewDataSource{
         let cell_Alam = tableView_Alam.dequeueReusableCell(withIdentifier: "weather_Alamofire", for: indexPath) as! WeatherAlamofireTableViewCell
 
         cell_Alam.dataForCollectionAlam = allWeatherInfo_Alam[indexPath.row]
-        print(allWeatherInfo_Alam[indexPath.row].count)
         cell_Alam.collectionTableAlam.reloadData()
         
         //day cell

@@ -39,8 +39,13 @@ class RealmWeather{
         infoFD.cod = cod
 
         for i in icons{
-            infoFD.icons.append(i as Data)
+            let icon = IconForTableClass()
+            icon.icon = i
+            infoFD.icons.append(icon)
         }
+        /*for i in icons{
+            infoFD.icons.append(i as Data)
+        }*/
         for i in uniqDates{
             let un_day = UnDayForTableClass()
             un_day.un_date = i
