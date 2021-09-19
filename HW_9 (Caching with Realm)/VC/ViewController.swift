@@ -44,24 +44,22 @@ class ViewController: UIViewController {
             print("--Инфо о текущей погодe в БД нет")
             cityNameAlam = "Moscow"
             RealmWeather().savingNewCity(city: cityNameAlam)
-            uploadEmptyCurrentInfo()
-            updateCurrentInfo()
         case false:
             print("--Инфо о текущей погодe в БД есть")
             uploadNOEmptyCurrentInfo()
-            updateCurrentInfo()
         }
+        updateCurrentInfo()
         
         switch forecastInfoRealm.isEmpty {
         case true:
             print("--Инфо о прогнозе погоды в БД нет")
-            uploadEmptyForecastInfo()
-            updateForecastInfo()
+            allWeatherInfo_Alam.append([])
+            uniqDatesForTable.append("Loading weather forecast for \(cityNameAlam)")
         case false:
             print("--Инфо о прогнозе погоды в БД есть")
-            updateForecastInfo()
             uploadNOEmptyForecastInfo()
         }
+        updateForecastInfo()
         
         changingUIs_loadingNewCurrentData()
         changingUIs_loadingNewForecastData()
@@ -93,26 +91,6 @@ class ViewController: UIViewController {
                 print("---------> Новая инфо о прогнозе погоды не загружена")
             }
         }.disposed(by: disposeBag)
-    }
-    
-    func uploadEmptyCurrentInfo(){
-        print("---Старт функции для первой загрузки текущей погоды")
-        today_Label_Alam.text = "Loading date..."
-        temp_Label_Alam.text = "Loading t..."
-        min_temp_Label_alam.text = "Loading min t..."
-        max_Label_Alam.text = "Loading max t..."
-        feels_like_Label_Alam.text = "Loading feels t..."
-        descript_Label_Alam.text = "Loading descript..."
-        icon_Image_Alam.image = .none
-        print("----Инфо о текущей погоде помещена в UI")
-        print("---Конец функции для первой загрузки текущей погоды")
-    }
-    
-    func uploadEmptyForecastInfo(){
-        print("---Старт функции для первой загрузки прогноза погоды")
-        allWeatherInfo_Alam.append([])
-        uniqDatesForTable.append("Loading weather forecast for")
-        print("---Конец функции для первой загрузки прогноза погоды")
     }
     
     func uploadNOEmptyCurrentInfo(){
@@ -211,7 +189,6 @@ class ViewController: UIViewController {
                 print(codFiveDays)
                 RealmWeather().savingNewCity(city: cityNameAlam)
                 codFiveDays = ""
-                uploadEmptyCurrentInfo()
                 updateCurrentInfo()
                 
                 self.weather_Table_Alamofire.reloadData()
