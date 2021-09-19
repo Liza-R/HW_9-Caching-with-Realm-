@@ -21,4 +21,10 @@ class ReturnInfoModels{
         print("Конец создания модели прогноза погоды Realm")
         return modelForecast
     }
+    func returnNewCityName(realm: Realm) -> Results<SearchCityName>{
+        print("Начало создания модели сохранённых городов")
+        let modelCity = realm.objects(SearchCityName.self)
+        print("Конец создания модели сохранённых городов")
+        return modelCity
+    }
 }

@@ -77,4 +77,12 @@ class RealmWeather{
         RemoveOldWeatherInfo().removeOldForecastInfo()
         print("-------Конец сохранения инфо прогноза погоды в Realm")
     }
+    
+    func savingNewCity(city: String){
+        let newCity = SearchCityName()
+        newCity.cityName = city
+        try! realm.write{
+            realm.add(newCity)
+        }
+    }
 }

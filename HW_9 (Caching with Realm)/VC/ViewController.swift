@@ -28,20 +28,22 @@ class ViewController: UIViewController {
     var codFiveDays = "",
         uniqDatesForTable: [String] = [],
         allDates: [String] = [],
-        allWeatherInfo_Alam: [[LoadingStruct.InfoTableAlam]] = [[]]
+        allWeatherInfo_Alam: [[LoadingStruct.InfoTableAlam]] = []
     
     let todayInfoRealm = ReturnInfoModels().returnCurrentInfo(realm: RealmWeather().realm),
         forecastInfoRealm = ReturnInfoModels().returnForecastInfo(realm: RealmWeather().realm),
+        saveNewCity = ReturnInfoModels().returnNewCityName(realm: RealmWeather().realm),
         disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print("-Загрузка приложения")
-        cityNameAlam = "Moscow"
         
         switch todayInfoRealm.isEmpty {
         case true:
             print("--Инфо о текущей погодe в БД нет")
+            cityNameAlam = "Moscow"
+            RealmWeather().savingNewCity(city: cityNameAlam)
             uploadEmptyCurrentInfo()
             updateCurrentInfo()
         case false:
@@ -108,12 +110,16 @@ class ViewController: UIViewController {
     
     func uploadEmptyForecastInfo(){
         print("---Старт функции для первой загрузки прогноза погоды")
+        allWeatherInfo_Alam.append([])
         uniqDatesForTable.append("Loading weather forecast for")
         print("---Конец функции для первой загрузки прогноза погоды")
     }
     
     func uploadNOEmptyCurrentInfo(){
         print("---Старт функции для повторной загрузки текущей погоды")
+        for c in saveNewCity{
+            cityNameAlam = c.cityName
+        }
         for i in self.todayInfoRealm{
             self.today_Label_Alam.text = "TODAY: \(i.dateToday)"
             self.temp_Label_Alam.text = "\(i.cityNameTemp)"
@@ -137,6 +143,7 @@ class ViewController: UIViewController {
             self.codFiveDays = i.cod
             self.uniqDatesForTable.removeAll()
             allDates.removeAll()
+            allWeatherInfo_Alam.removeAll()
             for j in i.un_dates{
                 self.uniqDatesForTable.append("\(j.un_date)")
             }
@@ -162,7 +169,7 @@ class ViewController: UIViewController {
             }
         }
 
-        for _ in 0...self.uniqDatesForTable.count - 2{
+        for _ in 0...self.uniqDatesForTable.count - 1{
             allWeatherInfo_Alam.append([])
         }
             for s in 0...uniqDatesForTable.count - 1{
@@ -202,6 +209,7 @@ class ViewController: UIViewController {
                 alert.alertCityNotFound(vc: self, cityName: cityNameAlam)
             }else{
                 print(codFiveDays)
+                RealmWeather().savingNewCity(city: cityNameAlam)
                 codFiveDays = ""
                 uploadEmptyCurrentInfo()
                 updateCurrentInfo()
@@ -225,9 +233,12 @@ extension ViewController: UITableViewDataSource{
 
         cell_Alam.dataForCollectionAlam = allWeatherInfo_Alam[indexPath.row]
         cell_Alam.collectionTableAlam.reloadData()
-
+        var city = ""
+        for i in self.todayInfoRealm{
+            city = i.cityNameTemp
+        }
         //day cell
-        cell_Alam.day_Label_Alam.text = "\(uniqDatesForTable[indexPath.row]) \(cityNameAlam)"
+        cell_Alam.day_Label_Alam.text = "\(uniqDatesForTable[indexPath.row]) \(String(describing: city.components(separatedBy: "C ").last?.components(separatedBy: "").first ?? ""))"
         return cell_Alam
     }
 }
