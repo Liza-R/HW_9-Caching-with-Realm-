@@ -9,9 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-var cityNameAlam: String = "",
-    savingTodayInfoVar = BehaviorRelay<Bool>(value: false),
-    savingFiveDaysInfoVar = BehaviorRelay<Bool>(value: false)
+var cityNameAlam: String = ""
 
 class ViewController: UIViewController {
 
@@ -42,7 +40,7 @@ class ViewController: UIViewController {
         switch todayInfoRealm.isEmpty {
         case true:
             print("--Инфо о текущей погодe в БД нет")
-            EmptyInfo().uploadEmptyCurrentInfo(dateLabel: today_Label_Alam, tempLabel: temp_Label_Alam, minTempLabel: min_temp_Label_alam, maxTempLabel: max_Label_Alam, feels_likeTempLabel: feels_like_Label_Alam, descrLabel: descript_Label_Alam, icon: icon_Image_Alam)
+            uploadEmptyTodayInfo()
             updateTodayInfo()
         case false:
             print("--Инфо о текущей погодe в БД есть")
@@ -71,7 +69,7 @@ class ViewController: UIViewController {
     }
 
     func changingUIs_loadingNewTodayData(){
-        savingTodayInfoVar.asObservable().subscribe { status in
+        RxVar().savingCurrentInfoVar.asObservable().subscribe { status in
             if status.element == true{
                 self.uploadNOEmptyTodayInfo()
                 print("---------> Новая инфо о текущей погоде загружена")
@@ -82,7 +80,7 @@ class ViewController: UIViewController {
     }
     
     func changingUIs_loadingNewTForecastData(){
-        savingFiveDaysInfoVar.asObservable().subscribe { status in
+        RxVar().savingForecastInfoVar.asObservable().subscribe { status in
             if status.element == true{
                 self.uploadNOEmptyForecastInfo()
                 print("---------> Новая инфо о прогнозе погоды загружена")
@@ -93,7 +91,18 @@ class ViewController: UIViewController {
         }.disposed(by: disposeBag)
     }
     
-    
+    func uploadEmptyTodayInfo(){
+        print("---Старт функции для первой загрузки текущей погоды")
+        today_Label_Alam.text = "Loading date..."
+        temp_Label_Alam.text = "Loading t..."
+        min_temp_Label_alam.text = "Loading min t..."
+        max_Label_Alam.text = "Loading max t..."
+        feels_like_Label_Alam.text = "Loading feels t..."
+        descript_Label_Alam.text = "Loading descript..."
+        icon_Image_Alam.image = .none
+        print("----Инфо о текущей погоде помещена в UI")
+        print("---Конец функции для первой загрузки текущей погоды")
+    }
     
     func uploadEmptyForecastInfo(){
         print("---Старт функции для первой загрузки прогноза погоды")
