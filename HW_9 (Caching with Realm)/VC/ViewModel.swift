@@ -14,9 +14,7 @@ class ViewModelAlamofire{
                 five_days_Alam: [ForecastWeatherStruct.Forecast_Info] = []
 
     func uploadToday(){
-        print("----Начало работы функции viewModel для загрузки инфо о текущей погоде")
         CorrentLoader().loadCurrentInfo { today in
-            print("-----Начало загрузки инфо о текущей погоде")
             self.today_Alam = today
             DispatchQueue.main.async {
                 for i in today{
@@ -43,23 +41,18 @@ class ViewModelAlamofire{
                                     max_temp = "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C",
                                     feelsL_temp = "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C",
                                     dataIcon = NSData(data: ic.pngData()!)
-                                print("------Вызов функции для сохранения инфо о текущей погоде в Realm")
                                 RealmWeather().savingCurrentInfo(descr: descript, icon: dataIcon, cityName: todayInfo, tempFL: feelsL_temp, tempTMax: max_temp, tempTMin: min_temp, dt: dateString)
-                                print("------Конец вызова функции для сохранения инфо о текущей погоде в Realm")
-                                
+
                             case .failure(let error):
                                 print("error--->",error)
                         }
                     }
                 }
             }
-            print("-----Конец загрузки инфо о текущей погоде")
         }
-        print("----Конец работы функции viewModel для загрузки инфо о текущей погоде")
     }
     
     func uploadDays(){
-        print("----Начало работы функции viewModel для загрузки инфо о прогнозе погоды")
         var temp_: [String] = [],
             descript: [String] = [],
             iconLinkAlam: [String] = [],
@@ -117,18 +110,9 @@ class ViewModelAlamofire{
                                     for _ in 0...dayForTable_F.count - 2{
                                         allWeatherInfo_Alam.append([])
                                     }
-                                   /* for (y, u) in dayForTable_F.enumerated(){
-                                        for (i, j) in allData_F.enumerated(){
-                                            if u == j{
-                                                allWeatherInfo_Alam[y].append(DaysInfo.forBaseTableAlam(temper_Alam: temp_[i], icon_Alam: iconsAlam[i], descript_Alam: descript[i], data_Alam: data[i], time_Alam: time[i]))
-                                            }
-                                        }
-                                    }*/
-                                    print("------Вызов функции для сохранения инфо о прогнозе погоды в Realm")
                                     var uniqDays = Array(Set(data))
                                     uniqDays = uniqDays.sorted()
                                     RealmWeather().savingForecastInfo(uniqDates: uniqDays, allDates: data, cod: cod, descripts: descript, icons: iconsAlam, temps: temp_, times: time)
-                                    print("------Конец вызова функции для сохранения инфо о прогнозе погоды в Realm")
                                 }
                             case .failure(let error):
                                 print("error--->",error)
@@ -136,8 +120,6 @@ class ViewModelAlamofire{
                     }
                 }
             }
-            print("-----Конец загрузки инфо о прогнозе погоды")
         }
-        print("----Конец работы функции viewModel для загрузки информации о прогнозе погоды")
     }
 }

@@ -13,7 +13,6 @@ class RealmWeather{
     let realm = try! Realm()
     
     func savingCurrentInfo(descr: String, icon: NSData, cityName: String, tempFL: String, tempTMax: String, tempTMin: String, dt: String){
-        print("-------Начало сохранения в Realm инфо о текущей погоде")
         let infoT = CurrentWeather()
         
         infoT.cityNameTemp = cityName
@@ -29,43 +28,41 @@ class RealmWeather{
         }
         savingCurrentInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldCurrentInfo()
-        print("-------Конец сохранения инфо в Realm о текущей погоде")
     }
 
     func savingForecastInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], icons: [NSData], temps: [String], times: [String]){
-        print("-------Начало сохранения в Realm инфо прогноза погоды")
-        let infoFD = ForecastWeather()
+        let infoFD = ForecastWeather(),
+            icon = IconForTableClass(),
+            un_day = UnDayForTableClass(),
+            day = DayForTableClass(),
+            descript = DescriptForTableClass(),
+            temp = TempForTableClass(),
+            time = TimeForTableClass()
 
         infoFD.cod = cod
 
         for i in icons{
-            let icon = IconForTableClass()
             icon.icon = i
             infoFD.icons.append(icon)
         }
 
         for i in uniqDates{
-            let un_day = UnDayForTableClass()
             un_day.un_date = i
             infoFD.un_dates.append(un_day)
         }
         for i in allDates{
-            let day = DayForTableClass()
             day.date = i
             infoFD.all_dates.append(day)
         }
         for i in descripts{
-            let descript = DescriptForTableClass()
             descript.descript = i
             infoFD.descripts.append(descript)
         }
         for i in temps{
-            let temp = TempForTableClass()
             temp.temp = i
             infoFD.temps.append(temp)
         }
         for i in times{
-            let time = TimeForTableClass()
             time.time = i
             infoFD.times.append(time)
         }
@@ -75,7 +72,6 @@ class RealmWeather{
         }
         savingForecastInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldForecastInfo()
-        print("-------Конец сохранения инфо прогноза погоды в Realm")
     }
     
     func savingNewCity(city: String){
