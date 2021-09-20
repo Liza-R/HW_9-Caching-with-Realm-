@@ -19,7 +19,6 @@ class WeatherAlamofireTableViewCell: UITableViewCell{
     var dataForCollectionAlam: [LoadingStruct.InfoTableAlam] = []
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //print(dataForCollectionAlam.count)
         return dataForCollectionAlam.count
     }
     
@@ -31,6 +30,7 @@ class WeatherAlamofireTableViewCell: UITableViewCell{
         cell.descriptLabelAlam.text = "\(options.descript_Alam)"
         cell.timeLabelAlam.text = options.time_Alam
         cell.iconImageAlam.image = options.icon_Alam
+        
         return cell
 }
     

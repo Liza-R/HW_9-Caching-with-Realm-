@@ -13,7 +13,7 @@ class ViewModelAlamofire{
     private var today_Alam: [CurrentWeatherStruct.Current_Info] = [],
                 five_days_Alam: [ForecastWeatherStruct.Forecast_Info] = []
 
-    func uploadToday(){
+    func uploadCurrentInfo(){
         CorrentLoader().loadCurrentInfo { today in
             self.today_Alam = today
             DispatchQueue.main.async {
@@ -26,7 +26,7 @@ class ViewModelAlamofire{
                         descript = j?.description ?? "Not Found"
                      }
                     
-                    let url_icon_Al = url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(icon_today_Alam!)")
+                    let url_icon_Al = URLs().url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(icon_today_Alam!)")
 
                     AF.request(URL(string: url_icon_Al)!, method: .get).response{ response in
                         switch response.result {
@@ -52,17 +52,14 @@ class ViewModelAlamofire{
         }
     }
     
-    func uploadDays(){
+    func uploadForecastInfo(){
         var temp_: [String] = [],
             descript: [String] = [],
             iconLinkAlam: [String] = [],
             iconsAlam: [NSData] = [],
             data: [String] = [],
             time: [String] = [],
-            cod: String = "",
-            
-            dayForTable_F: [String] = [],
-            allData_F: [String] = []
+            cod: String = ""
   
         let date = Date(),
         formatter = DateFormatter()
@@ -71,7 +68,6 @@ class ViewModelAlamofire{
         let result_Al = formatter.string(from: date)
 
         ForecastDaysLoader().loadForecastInfo { five_days in
-            print("-----Начало загрузки инфо о прогнозе погоды")
             self.five_days_Alam = five_days
             DispatchQueue.main.async {
                 for i in five_days{
@@ -90,7 +86,7 @@ class ViewModelAlamofire{
                     }
                 }
                 for (_, j) in iconLinkAlam.enumerated(){
-                    let url_icon = url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(j)")
+                    let url_icon = URLs().url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(j)")
                     AF.request(URL(string: url_icon)!, method: .get).response{ response in
                         switch response.result {
                             case .success(let responseData):
@@ -101,15 +97,6 @@ class ViewModelAlamofire{
                                     moving = true
                                 }
                                 if moving == true{
-                                    allData_F = data
-                                    var set = Set<String>()
-                                    dayForTable_F = allData_F.filter{ set.insert($0).inserted }
-                                    dayForTable_F = dayForTable_F.filter { $0 != "Not Found" }
-                                    dayForTable_F = dayForTable_F.filter { $0 != result_Al }
-                                    var allWeatherInfo_Alam: [[LoadingStruct.InfoTableAlam]] = [[]]
-                                    for _ in 0...dayForTable_F.count - 2{
-                                        allWeatherInfo_Alam.append([])
-                                    }
                                     var uniqDays = Array(Set(data))
                                     uniqDays = uniqDays.sorted()
                                     RealmWeather().savingForecastInfo(uniqDates: uniqDays, allDates: data, cod: cod, descripts: descript, icons: iconsAlam, temps: temp_, times: time)

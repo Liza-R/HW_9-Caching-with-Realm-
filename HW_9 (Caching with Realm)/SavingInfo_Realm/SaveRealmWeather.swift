@@ -31,38 +31,38 @@ class RealmWeather{
     }
 
     func savingForecastInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], icons: [NSData], temps: [String], times: [String]){
-        let infoFD = ForecastWeather(),
-            icon = IconForTableClass(),
-            un_day = UnDayForTableClass(),
-            day = DayForTableClass(),
-            descript = DescriptForTableClass(),
-            temp = TempForTableClass(),
-            time = TimeForTableClass()
+        let infoFD = ForecastWeather()
 
         infoFD.cod = cod
 
         for i in icons{
+            let icon = IconForTableClass()
             icon.icon = i
             infoFD.icons.append(icon)
         }
 
         for i in uniqDates{
+            let un_day = UnDayForTableClass()
             un_day.un_date = i
             infoFD.un_dates.append(un_day)
         }
         for i in allDates{
+            let day = DayForTableClass()
             day.date = i
             infoFD.all_dates.append(day)
         }
         for i in descripts{
+            let descript = DescriptForTableClass()
             descript.descript = i
             infoFD.descripts.append(descript)
         }
         for i in temps{
+            let temp = TempForTableClass()
             temp.temp = i
             infoFD.temps.append(temp)
         }
         for i in times{
+            let time = TimeForTableClass()
             time.time = i
             infoFD.times.append(time)
         }

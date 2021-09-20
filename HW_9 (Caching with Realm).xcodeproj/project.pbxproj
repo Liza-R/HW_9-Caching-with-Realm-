@@ -151,8 +151,8 @@
 		200A097D26F6606F00D2F60B /* Collections */ = {
 			isa = PBXGroup;
 			children = (
-				2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */,
 				2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */,
+				2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -179,8 +179,8 @@
 		200A099226F6682D00D2F60B /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
-				2047B10C26C6B692003B7E64 /* ForecastLoader.swift */,
 				2047B10A26C6B678003B7E64 /* CurrentLoader.swift */,
+				2047B10C26C6B692003B7E64 /* ForecastLoader.swift */,
 			);
 			path = Loaders;
 			sourceTree = "<group>";

@@ -10,8 +10,7 @@ import Alamofire
 
 class ForecastDaysLoader{
      func loadForecastInfo(completion: @escaping ([ForecastWeatherStruct.Forecast_Info]) -> Void){
-        
-        AF.request(URL(string: url_forecast_uploadAlam)!)
+        AF.request(URL(string: URLs().url_forecast_uploadAlam)!)
         .validate()
             .responseDecodable(of: ForecastWeatherStruct.Forecast_Info.self) { (response) in
                     guard let forecast = response.value else { return }

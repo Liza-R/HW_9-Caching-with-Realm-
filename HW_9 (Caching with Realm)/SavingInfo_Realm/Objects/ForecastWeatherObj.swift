@@ -23,7 +23,6 @@ class TimeForTableClass: Object {
 }
 class TempForTableClass: Object {
     @objc dynamic var temp = ""
-    //@objc dynamic var icon = UIImage()
 }
 class IconForTableClass: Object {
     @objc dynamic var icon = NSData()
