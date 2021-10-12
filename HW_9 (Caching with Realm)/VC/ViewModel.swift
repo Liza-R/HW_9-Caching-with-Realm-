@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Alamofire
 
-class ViewModelAlamofire{
+class ViewModel{
     private var today_Alam: [CurrentWeatherStruct.Current_Info] = [],
                 five_days_Alam: [ForecastWeatherStruct.Forecast_Info] = []
 

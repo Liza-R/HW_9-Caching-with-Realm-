@@ -32,6 +32,8 @@
 		2047B11126C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */; };
 		2047B11326C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */; };
 		2047B11526C6B93F003B7E64 /* SaveRealmWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2047B11426C6B93F003B7E64 /* SaveRealmWeather.swift */; };
+		2097AC6727145FE80033A687 /* ViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC6627145FE80033A687 /* ViewModelTest.swift */; };
+		2097AC6B27157C310033A687 /* ViewModel_Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC6A27157C310033A687 /* ViewModel_Mock.swift */; };
 		4AAE6A90DF793B9F9FC9362A /* Pods_HW_9__Caching_with_Realm_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +86,8 @@
 		2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlamofireTableViewCell.swift; sourceTree = "<group>"; };
 		2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCellAlam.swift; sourceTree = "<group>"; };
 		2047B11426C6B93F003B7E64 /* SaveRealmWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRealmWeather.swift; sourceTree = "<group>"; };
+		2097AC6627145FE80033A687 /* ViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTest.swift; sourceTree = "<group>"; };
+		2097AC6A27157C310033A687 /* ViewModel_Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel_Mock.swift; sourceTree = "<group>"; };
 		5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9__Caching_with_Realm_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).debug.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).debug.xcconfig"; sourceTree = "<group>"; };
 		E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).release.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).release.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 		2047B0D226C6B4EF003B7E64 /* HW_9 (Caching with Realm) */ = {
 			isa = PBXGroup;
 			children = (
+				2097AC6527145F970033A687 /* UnitTests */,
 				2047B0E126C6B4F0003B7E64 /* Info.plist */,
 				200A097A26F65FFD00D2F60B /* VC */,
 				200A097B26F6601C00D2F60B /* SavingInfo_Realm */,
@@ -256,6 +261,31 @@
 				2047B0DE26C6B4F0003B7E64 /* LaunchScreen.storyboard */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		2097AC6527145F970033A687 /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				2097AC6927157C040033A687 /* Mocks */,
+				2097AC6827157BF70033A687 /* Tests */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
+		2097AC6827157BF70033A687 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				2097AC6627145FE80033A687 /* ViewModelTest.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		2097AC6927157C040033A687 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				2097AC6A27157C310033A687 /* ViewModel_Mock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		8502A8CF59D768A147E0949D /* Pods */ = {
@@ -453,6 +483,7 @@
 				2047B10F26C6B6C4003B7E64 /* ViewModel.swift in Sources */,
 				2047B0D826C6B4EF003B7E64 /* ViewController.swift in Sources */,
 				200A098926F6641900D2F60B /* ReturnInfoModels.swift in Sources */,
+				2097AC6B27157C310033A687 /* ViewModel_Mock.swift in Sources */,
 				200A098726F6628E00D2F60B /* RemoveWeatherFuncs.swift in Sources */,
 				200A099026F667CE00D2F60B /* ChangeURLs.swift in Sources */,
 				2047B0D426C6B4EF003B7E64 /* AppDelegate.swift in Sources */,
@@ -476,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2097AC6727145FE80033A687 /* ViewModelTest.swift in Sources */,
 				2047B0EB26C6B4F1003B7E64 /* HW_9__Caching_with_Realm_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

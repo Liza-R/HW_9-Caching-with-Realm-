@@ -43,12 +43,12 @@ class ViewController: UIViewController {
         
         switch todayInfoRealm.isEmpty {
         case true:
-            cityNameAlam = "Moscow"
+            cityNameAlam = "Dubai"
             RealmWeather().savingNewCity(city: cityNameAlam)
         case false:
             uploadNOEmptyCurrentInfo()
         }
-        ViewModelAlamofire().uploadCurrentInfo()
+        ViewModel().uploadCurrentInfo()
 
         switch forecastInfoRealm.isEmpty {
         case true:
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         case false:
             uploadNOEmptyForecastInfo()
         }
-        ViewModelAlamofire().uploadForecastInfo()
+        ViewModel().uploadForecastInfo()
         
         savingCurrentInfoVar.asObservable().subscribe{ status in
             if status.element == true{
@@ -77,9 +77,9 @@ class ViewController: UIViewController {
 
     @objc func refresh(_ sender: AnyObject) {
         uploadNOEmptyCurrentInfo()
-        ViewModelAlamofire().uploadCurrentInfo()
+        ViewModel().uploadCurrentInfo()
         uploadNOEmptyForecastInfo()
-        ViewModelAlamofire().uploadForecastInfo()
+        ViewModel().uploadForecastInfo()
         self.weather_Table_Alamofire.reloadData()
         self.refreshControl.endRefreshing()
     }
@@ -153,8 +153,8 @@ class ViewController: UIViewController {
                 print(codFiveDays)
                 RealmWeather().savingNewCity(city: cityNameAlam)
                 codFiveDays = ""
-                ViewModelAlamofire().uploadCurrentInfo()
-                ViewModelAlamofire().uploadForecastInfo()
+                ViewModel().uploadCurrentInfo()
+                ViewModel().uploadForecastInfo()
                 uploadNOEmptyForecastInfo()
                 self.weather_Table_Alamofire.reloadData()
             }
