@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var feels_like_Label_Alam: UILabel!
     @IBOutlet weak var weather_Table_Alamofire: UITableView!
     
-    var codFiveDays = "",
+    var codForecastDays = "",
         uniqDatesForTable: [String] = [],
         allDates: [String] = [],
         allWeatherInfo_Alam: [[LoadingStruct.InfoTableAlam]] = [],
@@ -37,23 +37,7 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         weather_Table_Alamofire.addSubview(refreshControl)
         
-        switch currentInfoRealm.isEmpty {
-        case true:
-            cityNameAlam = "Moscow"
-            RealmWeather().savingNewCity(city: cityNameAlam)
-        case false:
-            uploadNOEmptyCurrentInfo()
-        }
-        ViewModel().uploadCurrentInfo()
-
-        switch forecastInfoRealm.isEmpty {
-        case true:
-            allWeatherInfo_Alam.append([])
-            uniqDatesForTable.append("Loading weather forecast for \(cityNameAlam)")
-        case false:
-            uploadNOEmptyForecastInfo()
-        }
-        ViewModel().uploadForecastInfo()
+        FuncsVC().diaplayLoadApp(curInfoRealm: currentInfoRealm, fcInfoRealm: forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo)
         
         savingCurrentInfoVar.asObservable().subscribe{ status in
             if status.element == true{
@@ -106,7 +90,7 @@ class ViewController: UIViewController {
         self.uniqDatesForTable.removeAll()
         allDates.removeAll()
         allWeatherInfo_Alam.removeAll()
-        self.codFiveDays = inForecast.cod
+        self.codForecastDays = inForecast.cod
         for j in inForecast.un_dates{
             self.uniqDatesForTable.append("\(j.un_date)")
         }
@@ -145,12 +129,12 @@ class ViewController: UIViewController {
             let changeURL = ChangingURLs()
             changeURL.changeCurrentURLAlam(cityName: cityNameAlam)
             changeURL.changeForecastURLAlam(cityName: cityNameAlam)
-            if codFiveDays == ""{
+            if codForecastDays == ""{
                 Alerts().alertCityNotFound(vc: self, cityName: cityNameAlam)
             }else{
-                print(codFiveDays)
+                print(codForecastDays)
                 RealmWeather().savingNewCity(city: cityNameAlam)
-                codFiveDays = ""
+                codForecastDays = ""
                 ViewModel().uploadCurrentInfo()
                 ViewModel().uploadForecastInfo()
                 uploadNOEmptyForecastInfo()

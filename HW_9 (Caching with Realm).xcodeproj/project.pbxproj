@@ -37,6 +37,7 @@
 		2097AC6D2715A2710033A687 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC6C2715A2710033A687 /* ImageLoader.swift */; };
 		2097AC6F2715C3D80033A687 /* CurrentImageObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC6E2715C3D80033A687 /* CurrentImageObj.swift */; };
 		2097AC712715C71C0033A687 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC702715C71C0033A687 /* GlobalVariables.swift */; };
+		2097AC782715CC6D0033A687 /* FuncsForMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC772715CC6D0033A687 /* FuncsForMainVC.swift */; };
 		4AAE6A90DF793B9F9FC9362A /* Pods_HW_9__Caching_with_Realm_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		2097AC6C2715A2710033A687 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		2097AC6E2715C3D80033A687 /* CurrentImageObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentImageObj.swift; sourceTree = "<group>"; };
 		2097AC702715C71C0033A687 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		2097AC772715CC6D0033A687 /* FuncsForMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuncsForMainVC.swift; sourceTree = "<group>"; };
 		5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9__Caching_with_Realm_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).debug.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).debug.xcconfig"; sourceTree = "<group>"; };
 		E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).release.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).release.xcconfig"; sourceTree = "<group>"; };
@@ -128,10 +130,11 @@
 		200A097A26F65FFD00D2F60B /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				2097AC762715CBFD0033A687 /* FuncsVC */,
 				2047B10426C6B616003B7E64 /* VC_Alerts.swift */,
 				2047B0D726C6B4EF003B7E64 /* ViewController.swift */,
 				2047B10E26C6B6C4003B7E64 /* ViewModel.swift */,
-				200A097D26F6606F00D2F60B /* Collections */,
+				200A097D26F6606F00D2F60B /* Table&Collections */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -140,9 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				200A099326F668DF00D2F60B /* Objects */,
-				2047B11426C6B93F003B7E64 /* SaveRealmWeather.swift */,
-				200A098626F6628E00D2F60B /* RemoveWeatherFuncs.swift */,
-				200A098826F6641900D2F60B /* ReturnInfoModels.swift */,
+				2097AC752715CA830033A687 /* Operations */,
 			);
 			path = SavingInfo_Realm;
 			sourceTree = "<group>";
@@ -157,13 +158,13 @@
 			path = ForLoading;
 			sourceTree = "<group>";
 		};
-		200A097D26F6606F00D2F60B /* Collections */ = {
+		200A097D26F6606F00D2F60B /* Table&Collections */ = {
 			isa = PBXGroup;
 			children = (
 				2047B11026C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift */,
 				2047B11226C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift */,
 			);
-			path = Collections;
+			path = "Table&Collections";
 			sourceTree = "<group>";
 		};
 		200A098E26F667B300D2F60B /* URLs */ = {
@@ -234,7 +235,7 @@
 				2097AC6527145F970033A687 /* UnitTests */,
 				2047B0E126C6B4F0003B7E64 /* Info.plist */,
 				2047B0D926C6B4EF003B7E64 /* Main.storyboard */,
-				2097AC702715C71C0033A687 /* GlobalVariables.swift */,
+				2097AC722715C9020033A687 /* Variables */,
 				200A097A26F65FFD00D2F60B /* VC */,
 				200A097B26F6601C00D2F60B /* SavingInfo_Realm */,
 				200A097C26F6603600D2F60B /* ForLoading */,
@@ -295,6 +296,32 @@
 				2097AC6A27157C310033A687 /* ViewModel_Mock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		2097AC722715C9020033A687 /* Variables */ = {
+			isa = PBXGroup;
+			children = (
+				2097AC702715C71C0033A687 /* GlobalVariables.swift */,
+			);
+			path = Variables;
+			sourceTree = "<group>";
+		};
+		2097AC752715CA830033A687 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				200A098826F6641900D2F60B /* ReturnInfoModels.swift */,
+				200A098626F6628E00D2F60B /* RemoveWeatherFuncs.swift */,
+				2047B11426C6B93F003B7E64 /* SaveRealmWeather.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		2097AC762715CBFD0033A687 /* FuncsVC */ = {
+			isa = PBXGroup;
+			children = (
+				2097AC772715CC6D0033A687 /* FuncsForMainVC.swift */,
+			);
+			path = FuncsVC;
 			sourceTree = "<group>";
 		};
 		8502A8CF59D768A147E0949D /* Pods */ = {
@@ -496,6 +523,7 @@
 				200A098726F6628E00D2F60B /* RemoveWeatherFuncs.swift in Sources */,
 				200A099026F667CE00D2F60B /* ChangeURLs.swift in Sources */,
 				2097AC6F2715C3D80033A687 /* CurrentImageObj.swift in Sources */,
+				2097AC782715CC6D0033A687 /* FuncsForMainVC.swift in Sources */,
 				2047B0D426C6B4EF003B7E64 /* AppDelegate.swift in Sources */,
 				200A09A726F788E500D2F60B /* SearchCityName.swift in Sources */,
 				200A097F26F660CB00D2F60B /* CurrentWeatherStrust.swift in Sources */,
