@@ -6,8 +6,15 @@
 //
 
 import Foundation
-@testable import HW_9__Caching_with_Realm_
 
 class ViewModel_Mock: ViewModel{
-    
+    var curInfoLoad = 0,
+        forecastInfoLoad = 0
+
+    override func uploadCurrentInfo() {
+        curInfoLoad = 1
+    }
+    override func uploadForecastInfo() {
+        forecastInfoLoad = 1
+    }
 }

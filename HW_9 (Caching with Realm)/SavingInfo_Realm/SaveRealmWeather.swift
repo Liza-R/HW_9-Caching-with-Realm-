@@ -12,7 +12,7 @@ import UIKit
 class RealmWeather{
     let realm = try! Realm()
     
-    func savingCurrentInfo(descr: String, icon: NSData, cityName: String, tempFL: String, tempTMax: String, tempTMin: String, dt: String){
+    func savingCurrentInfo(descr: String, icon_url: String, cityName: String, tempFL: String, tempTMax: String, tempTMin: String){
         let infoT = CurrentWeather()
         
         infoT.cityNameTemp = cityName
@@ -20,14 +20,25 @@ class RealmWeather{
         infoT.tempTMax = tempTMax
         infoT.tempTMin = tempTMin
         infoT.descr = descr
-        infoT.dateToday = dt
-        infoT.icon = icon
+        infoT.icon_url = icon_url
         
         try! realm.write{
             realm.add(infoT)
         }
         savingCurrentInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldCurrentInfo()
+    }
+    
+    func savingCurrentImage(icon: NSData){
+        let image = CurrentImage()
+
+        image.icon = icon
+        
+        try! realm.write{
+            realm.add(image)
+        }
+        savingCurrentInfoVar.accept(true)
+        RemoveOldWeatherInfo().removeOldCurrentImage()
     }
 
     func savingForecastInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], icons: [NSData], temps: [String], times: [String]){

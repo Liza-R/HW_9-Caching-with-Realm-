@@ -10,6 +10,14 @@ import XCTest
 
 class ViewModelTest: XCTestCase {
 
+    func testVC(){
+        let vc_mock = ViewModel_Mock()
+        vc_mock.uploadCurrentInfo()
+        vc_mock.uploadForecastInfo()
+        //XCTAssert(vc_mock.curInfoLoad == 1, "current weather download function works")
+        //XCTAssert(vc_mock.forecastInfoLoad == 1, "forecast weather download function works")
+    }
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }

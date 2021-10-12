@@ -17,6 +17,15 @@ class RemoveOldWeatherInfo{
         }
     }
     
+    func removeOldCurrentImage(){
+        let modelCurrent = RealmWeather().realm.objects(CurrentImage.self)
+        if modelCurrent.first != nil && modelCurrent.count > 2{
+            try! RealmWeather().realm.write {
+                RealmWeather().realm.delete(modelCurrent.first!)
+            }
+        }
+    }
+    
     func removeOldForecastInfo(){
         let modelForecast = RealmWeather().realm.objects(ForecastWeather.self)
         if modelForecast.first != nil && modelForecast.count > 2{

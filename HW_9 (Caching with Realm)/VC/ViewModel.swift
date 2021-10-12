@@ -10,47 +10,21 @@ import UIKit
 import Alamofire
 
 class ViewModel{
-    private var today_Alam: [CurrentWeatherStruct.Current_Info] = [],
-                five_days_Alam: [ForecastWeatherStruct.Forecast_Info] = []
+    private var current_Info: [CurrentWeatherStruct.Current_Info] = [],
+                forecast_Info: [ForecastWeatherStruct.Forecast_Info] = []
 
     func uploadCurrentInfo(){
-        CorrentLoader().loadCurrentInfo { today in
-            self.today_Alam = today
+        CurrentLoader().loadCurrentInfo { current in
+            self.current_Info = current
             DispatchQueue.main.async {
-                for i in today{
-                     var icon_today_Alam: String? = "",
-                         descript: String = ""
-                     
+                for i in current{
                      for j in i.weather{
-                        icon_today_Alam = j?.icon
-                        descript = j?.description ?? "Not Found"
-                     }
-                    
-                    let url_icon_Al = URLs().url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(icon_today_Alam!)")
-
-                    AF.request(URL(string: url_icon_Al)!, method: .get).response{ response in
-                        switch response.result {
-                            case .success(let responseData):
-                                let ic = UIImage(data: responseData!, scale:1) ?? .checkmark,
-                                date = NSDate(timeIntervalSince1970: TimeInterval(i.dt)),
-                                        dayTimePeriodFormatter = DateFormatter()
-                                dayTimePeriodFormatter.dateFormat = "YYYY-MM-dd"
-                                let dateString = dayTimePeriodFormatter.string(from: date as Date),
-                                    todayInfo = "\(String(describing: Int(i.main!.temp - 273.15)))°C \(i.name)",
-                                    min_temp = "Min: \(String(describing: Int(i.main!.temp_min - 273.15)))°C",
-                                    max_temp = "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C",
-                                    feelsL_temp = "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C",
-                                    dataIcon = NSData(data: ic.pngData()!)
-                                RealmWeather().savingCurrentInfo(descr: descript, icon: dataIcon, cityName: todayInfo, tempFL: feelsL_temp, tempTMax: max_temp, tempTMin: min_temp, dt: dateString)
-
-                            case .failure(let error):
-                                print("error--->",error)
+                         RealmWeather().savingCurrentInfo(descr: j?.description ?? "Not Found", icon_url: j?.icon ?? "Not Found", cityName: "\(String(describing: Int(i.main!.temp - 273.15)))°C \(i.name)", tempFL: "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C", tempTMax: "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C", tempTMin: "Min: \(String(describing: Int(i.main!.temp_min - 273.15)))°C")
                         }
                     }
                 }
             }
         }
-    }
     
     func uploadForecastInfo(){
         var temp_: [String] = [],
@@ -67,10 +41,10 @@ class ViewModel{
         
         let result_Al = formatter.string(from: date)
 
-        ForecastDaysLoader().loadForecastInfo { five_days in
-            self.five_days_Alam = five_days
+        ForecastDaysLoader().loadForecastInfo { forecast in
+            self.forecast_Info = forecast
             DispatchQueue.main.async {
-                for i in five_days{
+                for i in forecast{
                     cod = i.cod
                     for j in i.list{
                         let denechek = j?.dt_txt.components(separatedBy: " ")

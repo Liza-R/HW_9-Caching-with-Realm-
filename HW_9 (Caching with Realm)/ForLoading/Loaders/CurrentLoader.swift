@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class CorrentLoader{
+class CurrentLoader{
     func loadCurrentInfo(completion: @escaping ([CurrentWeatherStruct.Current_Info]) -> Void){
         AF.request(URL(string: URLs().url_current_uploadAlam)!)
         .validate()

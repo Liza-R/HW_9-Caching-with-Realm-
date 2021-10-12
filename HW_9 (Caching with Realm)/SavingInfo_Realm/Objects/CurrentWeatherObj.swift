@@ -14,6 +14,5 @@ class CurrentWeather: Object{
     @objc dynamic var tempTMax = ""
     @objc dynamic var tempTMin = ""
     @objc dynamic var descr = ""
-    @objc dynamic var dateToday = ""
-    @objc dynamic var icon = NSData()
+    @objc dynamic var icon_url = ""
 }

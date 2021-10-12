@@ -9,14 +9,9 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-var cityNameAlam: String = "",
-    savingCurrentInfoVar = BehaviorRelay<Bool>(value: false),
-    savingForecastInfoVar = BehaviorRelay<Bool>(value: false)
-
 class ViewController: UIViewController {
 
     @IBOutlet weak var searchTF: UITextField!
-    @IBOutlet weak var today_Label_Alam: UILabel!
     @IBOutlet weak var icon_Image_Alam: UIImageView!
     @IBOutlet weak var temp_Label_Alam: UILabel!
     @IBOutlet weak var max_Label_Alam: UILabel!
@@ -31,7 +26,8 @@ class ViewController: UIViewController {
         allWeatherInfo_Alam: [[LoadingStruct.InfoTableAlam]] = [],
         refreshControl = UIRefreshControl()
     
-    let todayInfoRealm = ReturnInfoModels().returnCurrentInfo(realm: RealmWeather().realm),
+    let currentInfoRealm = ReturnInfoModels().returnCurrentInfo(realm: RealmWeather().realm),
+        currentImageRealm = ReturnInfoModels().returnCurrentImage(realm: RealmWeather().realm),
         forecastInfoRealm = ReturnInfoModels().returnForecastInfo(realm: RealmWeather().realm),
         saveNewCity = ReturnInfoModels().returnNewCityName(realm: RealmWeather().realm),
         disposeBag = DisposeBag()
@@ -41,9 +37,9 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         weather_Table_Alamofire.addSubview(refreshControl)
         
-        switch todayInfoRealm.isEmpty {
+        switch currentInfoRealm.isEmpty {
         case true:
-            cityNameAlam = "Dubai"
+            cityNameAlam = "Moscow"
             RealmWeather().savingNewCity(city: cityNameAlam)
         case false:
             uploadNOEmptyCurrentInfo()
@@ -88,13 +84,15 @@ class ViewController: UIViewController {
         for c in saveNewCity{
             cityNameAlam = c.cityName
         }
-        for i in self.todayInfoRealm{
-            self.today_Label_Alam.text = "TODAY: \(i.dateToday)"
+        for i in self.currentInfoRealm{
             self.temp_Label_Alam.text = "\(i.cityNameTemp)"
             self.min_temp_Label_alam.text = "\(i.tempTMin)"
             self.max_Label_Alam.text = "\(i.tempTMax)"
             self.feels_like_Label_Alam.text = "\(i.tempFL)"
             self.descript_Label_Alam.text = "\(i.descr)"
+            ImageLoader().uploadImage(image_url: i.icon_url)
+        }
+        for i in self.currentImageRealm{
             self.icon_Image_Alam.image = UIImage(data: i.icon as Data)
         }
     }
@@ -172,7 +170,7 @@ extension ViewController: UITableViewDataSource{
         
         let cell_Alam = tableView_Alam.dequeueReusableCell(withIdentifier: "weather_Alamofire", for: indexPath) as! WeatherAlamofireTableViewCell
 
-        var city = self.todayInfoRealm.last?.cityNameTemp
+        var city = self.currentInfoRealm.last?.cityNameTemp
         city = city?.components(separatedBy: "C ").last?.components(separatedBy: "").first ?? "City Not Found"
 
         cell_Alam.day_Label_Alam.text = "\(uniqDatesForTable[indexPath.row]) \(String(describing: city!))"

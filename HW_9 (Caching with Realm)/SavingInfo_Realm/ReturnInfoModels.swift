@@ -12,6 +12,9 @@ class ReturnInfoModels{
     func returnCurrentInfo(realm: Realm) -> Results<CurrentWeather>{
         return realm.objects(CurrentWeather.self)
     }
+    func returnCurrentImage(realm: Realm) -> Results<CurrentImage>{
+        return realm.objects(CurrentImage.self)
+    }
     func returnForecastInfo(realm: Realm) -> Results<ForecastWeather>{
         return realm.objects(ForecastWeather.self)
     }
