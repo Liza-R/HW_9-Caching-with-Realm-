@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="180"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="STH-kd-beh">
-                                        <rect key="frame" x="10" y="67" width="100" height="100"/>
+                                        <rect key="frame" x="10" y="64" width="100" height="100"/>
                                         <color key="backgroundColor" red="0.76470589639999997" green="0.61568629740000003" blue="0.27450981740000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="fUf-Dd-P5i"/>
@@ -55,7 +55,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Input city" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJh-RJ-h4y">
-                                        <rect key="frame" x="10" y="10" width="324" height="40"/>
+                                        <rect key="frame" x="10" y="13" width="324" height="34"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -132,15 +132,13 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5HN-nX-cSf" secondAttribute="trailing" constant="10" id="5T8-he-j3e"/>
                                     <constraint firstItem="wQH-FD-UDs" firstAttribute="leading" secondItem="xJh-RJ-h4y" secondAttribute="trailing" constant="10" id="BP7-6g-n73"/>
-                                    <constraint firstItem="CAy-4b-t87" firstAttribute="trailing" secondItem="xJh-RJ-h4y" secondAttribute="trailing" id="Eel-ul-wN6"/>
                                     <constraint firstItem="5HN-nX-cSf" firstAttribute="top" secondItem="wQH-FD-UDs" secondAttribute="bottom" constant="2" id="FR4-mD-5aH"/>
                                     <constraint firstAttribute="bottom" secondItem="5HN-nX-cSf" secondAttribute="bottom" constant="2" id="FuS-WT-usw"/>
                                     <constraint firstItem="xJh-RJ-h4y" firstAttribute="centerY" secondItem="wQH-FD-UDs" secondAttribute="centerY" id="I7e-3q-fnX"/>
                                     <constraint firstItem="STH-kd-beh" firstAttribute="top" secondItem="xJh-RJ-h4y" secondAttribute="bottom" constant="17" id="O0C-gu-NYc"/>
-                                    <constraint firstItem="xJh-RJ-h4y" firstAttribute="leading" secondItem="STH-kd-beh" secondAttribute="leading" id="Oce-3e-5Fu"/>
-                                    <constraint firstItem="xJh-RJ-h4y" firstAttribute="height" secondItem="wQH-FD-UDs" secondAttribute="height" id="Sq7-kS-hIT"/>
                                     <constraint firstAttribute="height" constant="180" id="Ulf-8D-2VR"/>
                                     <constraint firstItem="STH-kd-beh" firstAttribute="leading" secondItem="cqn-vF-wlV" secondAttribute="leading" constant="10" id="Uqt-8U-loB"/>
+                                    <constraint firstItem="xJh-RJ-h4y" firstAttribute="leading" secondItem="cqn-vF-wlV" secondAttribute="leading" constant="10" id="eaD-93-Cku"/>
                                     <constraint firstAttribute="trailing" secondItem="wQH-FD-UDs" secondAttribute="trailing" constant="10" id="rPv-Ls-f2L"/>
                                     <constraint firstItem="wQH-FD-UDs" firstAttribute="top" secondItem="cqn-vF-wlV" secondAttribute="top" constant="10" id="w6n-vy-8g9"/>
                                     <constraint firstItem="5HN-nX-cSf" firstAttribute="leading" secondItem="STH-kd-beh" secondAttribute="trailing" constant="10" id="xhx-63-qt0"/>

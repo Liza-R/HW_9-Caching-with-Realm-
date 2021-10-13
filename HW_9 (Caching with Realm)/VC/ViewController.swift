@@ -25,30 +25,28 @@ class ViewController: UIViewController {
         allDates: [String] = [],
         allWeatherInfo_Alam: [[LoadingStruct.InfoTableAlam]] = [],
         refreshControl = UIRefreshControl()
-    
-    let currentInfoRealm = ReturnInfoModels().returnCurrentInfo(realm: RealmWeather().realm),
-        currentImageRealm = ReturnInfoModels().returnCurrentImage(realm: RealmWeather().realm),
-        forecastInfoRealm = ReturnInfoModels().returnForecastInfo(realm: RealmWeather().realm),
-        saveNewCity = ReturnInfoModels().returnNewCityName(realm: RealmWeather().realm),
-        disposeBag = DisposeBag()
+
+       let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         weather_Table_Alamofire.addSubview(refreshControl)
+        refreshControl.tintColor = .white
         
-        FuncsVC().diaplayLoadApp(curInfoRealm: currentInfoRealm, fcInfoRealm: forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo)
-        
+        FuncsVC().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo)
         savingCurrentInfoVar.asObservable().subscribe{ status in
             if status.element == true{
                 self.uploadNOEmptyCurrentInfo()
-            }else{}
+            }
         }.disposed(by: disposeBag)
         
-        savingForecastInfoVar.asObservable().subscribe { status in
+        savingForecastInfoVar.asObservable()
+            .subscribe { status in
             if status.element == true{
                 self.uploadNOEmptyForecastInfo()
-            }else{}
+                    
+            }
         }.disposed(by: disposeBag)
         
         self.weather_Table_Alamofire.dataSource = self
@@ -65,18 +63,20 @@ class ViewController: UIViewController {
     }
     
     func uploadNOEmptyCurrentInfo(){
-        for c in saveNewCity{
+        for c in RealmVars().saveNewCity{
             cityNameAlam = c.cityName
         }
-        for i in self.currentInfoRealm{
+        var ic_url = ""
+        for i in RealmVars().currentInfoRealm{
             self.temp_Label_Alam.text = "\(i.cityNameTemp)"
             self.min_temp_Label_alam.text = "\(i.tempTMin)"
             self.max_Label_Alam.text = "\(i.tempTMax)"
             self.feels_like_Label_Alam.text = "\(i.tempFL)"
             self.descript_Label_Alam.text = "\(i.descr)"
-            ImageLoader().uploadImage(image_url: i.icon_url)
+            ic_url = i.icon_url
         }
-        for i in self.currentImageRealm{
+        ImageLoader().uploadImage(image_url: ic_url)
+        for i in RealmVars().currentImageRealm{
             self.icon_Image_Alam.image = UIImage(data: i.icon as Data)
         }
     }
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
             tempS: [String] = [],
             descrS: [String] = [],
             iconS: [NSData] = []
-        let inForecast = self.forecastInfoRealm.last!
+        let inForecast = RealmVars().forecastInfoRealm.last!
         self.uniqDatesForTable.removeAll()
         allDates.removeAll()
         allWeatherInfo_Alam.removeAll()
@@ -154,7 +154,7 @@ extension ViewController: UITableViewDataSource{
         
         let cell_Alam = tableView_Alam.dequeueReusableCell(withIdentifier: "weather_Alamofire", for: indexPath) as! WeatherAlamofireTableViewCell
 
-        var city = self.currentInfoRealm.last?.cityNameTemp
+        var city = RealmVars().currentInfoRealm.last?.cityNameTemp
         city = city?.components(separatedBy: "C ").last?.components(separatedBy: "").first ?? "City Not Found"
 
         cell_Alam.day_Label_Alam.text = "\(uniqDatesForTable[indexPath.row]) \(String(describing: city!))"
