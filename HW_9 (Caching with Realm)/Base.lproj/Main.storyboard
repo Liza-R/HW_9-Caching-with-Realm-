@@ -119,24 +119,33 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Input city" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iAz-Ky-Qbl">
-                                        <rect key="frame" x="10" y="13" width="338" height="34"/>
+                                        <rect key="frame" x="114.66666666666667" y="13" width="233.33333333333331" height="34"/>
                                         <accessibility key="accessibilityConfiguration" identifier="tfsearch"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last update: " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spp-UJ-E6f">
+                                        <rect key="frame" x="15.333333333333336" y="10" width="89.333333333333314" height="43.666666666666664"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.76372700360000001" blue="0.98312219570000003" alpha="0.57419199489999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5HN-nX-cSf" secondAttribute="trailing" constant="10" id="5T8-he-j3e"/>
-                                    <constraint firstItem="iAz-Ky-Qbl" firstAttribute="leading" secondItem="cqn-vF-wlV" secondAttribute="leading" constant="10" id="6I3-gC-cpI"/>
                                     <constraint firstItem="5HN-nX-cSf" firstAttribute="top" secondItem="wQH-FD-UDs" secondAttribute="bottom" constant="2" id="FR4-mD-5aH"/>
                                     <constraint firstAttribute="bottom" secondItem="5HN-nX-cSf" secondAttribute="bottom" constant="2" id="FuS-WT-usw"/>
                                     <constraint firstItem="iAz-Ky-Qbl" firstAttribute="centerY" secondItem="wQH-FD-UDs" secondAttribute="centerY" id="Tut-bc-OzI"/>
                                     <constraint firstAttribute="height" constant="180" id="Ulf-8D-2VR"/>
                                     <constraint firstItem="STH-kd-beh" firstAttribute="leading" secondItem="cqn-vF-wlV" secondAttribute="leading" constant="10" id="Uqt-8U-loB"/>
+                                    <constraint firstItem="spp-UJ-E6f" firstAttribute="centerX" secondItem="STH-kd-beh" secondAttribute="centerX" id="eix-q8-vEB"/>
+                                    <constraint firstItem="iAz-Ky-Qbl" firstAttribute="leading" secondItem="spp-UJ-E6f" secondAttribute="trailing" constant="10" id="htx-g2-JpD"/>
+                                    <constraint firstItem="STH-kd-beh" firstAttribute="top" secondItem="spp-UJ-E6f" secondAttribute="bottom" constant="10" id="kiA-95-fAu"/>
                                     <constraint firstItem="wQH-FD-UDs" firstAttribute="leading" secondItem="iAz-Ky-Qbl" secondAttribute="trailing" constant="10" id="ldu-R0-OHN"/>
                                     <constraint firstAttribute="trailing" secondItem="wQH-FD-UDs" secondAttribute="trailing" constant="10" id="rPv-Ls-f2L"/>
+                                    <constraint firstItem="spp-UJ-E6f" firstAttribute="top" secondItem="cqn-vF-wlV" secondAttribute="top" constant="10" id="vO1-5C-YR4"/>
                                     <constraint firstItem="wQH-FD-UDs" firstAttribute="top" secondItem="cqn-vF-wlV" secondAttribute="top" constant="10" id="w6n-vy-8g9"/>
                                     <constraint firstItem="5HN-nX-cSf" firstAttribute="leading" secondItem="STH-kd-beh" secondAttribute="trailing" constant="10" id="xhx-63-qt0"/>
                                     <constraint firstItem="STH-kd-beh" firstAttribute="top" secondItem="iAz-Ky-Qbl" secondAttribute="bottom" constant="16.5" id="zuw-rA-O9D"/>
@@ -313,6 +322,7 @@
                         <outlet property="descript_Label_Alam" destination="1qk-bj-PXY" id="Qbv-cK-fYj"/>
                         <outlet property="feels_like_Label_Alam" destination="Hww-eh-w6B" id="H1q-AP-ger"/>
                         <outlet property="icon_Image_Alam" destination="STH-kd-beh" id="gog-wK-x0g"/>
+                        <outlet property="lastUPDLabel" destination="spp-UJ-E6f" id="zMd-yO-il2"/>
                         <outlet property="max_Label_Alam" destination="JD7-VY-IKl" id="PJb-wT-YXa"/>
                         <outlet property="min_temp_Label_alam" destination="CAy-4b-t87" id="FYR-gE-JGJ"/>
                         <outlet property="searchTF" destination="iAz-Ky-Qbl" id="oDp-Bg-4Ws"/>

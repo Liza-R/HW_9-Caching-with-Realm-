@@ -16,7 +16,6 @@ class CheckInternetConnect{
         }else{
             print("No! internet is not available.")
             vc.present(Alerts().alertNotConnect(), animated: true, completion: nil)
-            refreshControl.endRefreshing()
         }
     }
 }
