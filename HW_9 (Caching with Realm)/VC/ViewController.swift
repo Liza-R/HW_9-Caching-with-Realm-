@@ -66,16 +66,13 @@ class ViewController: UIViewController {
         for c in RealmVars().saveNewCity{
             cityNameAlam = c.cityName
         }
-        var ic_url = ""
         for i in RealmVars().currentInfoRealm{
             self.temp_Label_Alam.text = "\(i.cityNameTemp)"
             self.min_temp_Label_alam.text = "\(i.tempTMin)"
             self.max_Label_Alam.text = "\(i.tempTMax)"
             self.feels_like_Label_Alam.text = "\(i.tempFL)"
             self.descript_Label_Alam.text = "\(i.descr)"
-            ic_url = i.icon_url
         }
-        ImageLoader().uploadCurrentImage(image_url: ic_url)
         for i in RealmVars().currentImageRealm{
             self.icon_Image_Alam.image = UIImage(data: i.icon as Data)
         }
@@ -85,7 +82,6 @@ class ViewController: UIViewController {
         var timeS: [String] = [],
             tempS: [String] = [],
             descrS: [String] = [],
-            iconS: [String] = [],
             iconS_: [NSData] = []
         let inForecast = RealmVars().forecastInfoRealm.last!
         self.uniqDatesForTable.removeAll()
@@ -109,7 +105,6 @@ class ViewController: UIViewController {
             tempS.append(u.temp)
             descrS.append(inForecast.descripts[k].descript)
             timeS.append(inForecast.times[k].time)
-            iconS.append(inForecast.icons[k].icon)
         }
 
         let inForecastImages = RealmVars().forecastImagesRealm.last!

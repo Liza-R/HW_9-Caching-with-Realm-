@@ -24,14 +24,10 @@ class TimeForTableClass: Object {
 class TempForTableClass: Object {
     @objc dynamic var temp = ""
 }
-class IconForTableClass: Object {
-    @objc dynamic var icon = ""//NSData()
-}
 
 class ForecastWeather: Object{
     @objc dynamic var cod = ""
-    let icons = List<IconForTableClass>(),
-        descripts = List<DescriptForTableClass>(),
+    let descripts = List<DescriptForTableClass>(),
         un_dates = List<UnDayForTableClass>(),
         all_dates = List<DayForTableClass>(),
         times = List<TimeForTableClass>(),

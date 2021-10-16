@@ -203,8 +203,8 @@
 		200A099326F668DF00D2F60B /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				200A098426F6623000D2F60B /* ForecastWeatherObj.swift */,
 				200A098226F6620700D2F60B /* CurrentWeatherObj.swift */,
+				200A098426F6623000D2F60B /* ForecastWeatherObj.swift */,
 				200A09A626F788E500D2F60B /* SearchCityName.swift */,
 				2097AC6E2715C3D80033A687 /* CurrentImageObj.swift */,
 				209FD97C271ABCC900978B9C /* ForecastImagesObj.swift */,

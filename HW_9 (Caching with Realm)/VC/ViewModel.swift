@@ -20,12 +20,13 @@ class ViewModel{
             DispatchQueue.main.async {
                 for i in current{
                      for j in i.weather{
-                         RealmWeather().savingCurrentInfo(descr: j?.description ?? nf, icon_url: j?.icon ?? nf, cityName: "\(String(describing: Int(i.main!.temp - 273.15)))°C \(i.name)", tempFL: "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C", tempTMax: "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C", tempTMin: "Min: \(String(describing: Int(i.main!.temp_min - 273.15)))°C")
-                        }
+                         RealmWeather().savingCurrentInfo(descr: j?.description ?? nf, cityName: "\(String(describing: Int(i.main!.temp - 273.15)))°C \(i.name)", tempFL: "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C", tempTMax: "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C", tempTMin: "Min: \(String(describing: Int(i.main!.temp_min - 273.15)))°C")
+                         ImageLoader().uploadCurrentImage(image_url: j?.icon ?? nf)
                     }
                 }
             }
         }
+    }
     
     func uploadForecastInfo(){
         var temp_: [String] = [],
@@ -60,7 +61,7 @@ class ViewModel{
                     }
                 }
                 ImageLoader().uploadForecastImages(image_urls: iconLinkAlam, all_temps: temp_)
-                RealmWeather().savingForecastInfo(uniqDates: Array(Set(data)).sorted(), allDates: data, cod: cod, descripts: descript, icons: iconLinkAlam, temps: temp_, times: time)
+                RealmWeather().savingForecastInfo(uniqDates: Array(Set(data)).sorted(), allDates: data, cod: cod, descripts: descript, temps: temp_, times: time)
             }
         }
     }
