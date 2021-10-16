@@ -42,4 +42,13 @@ class RemoveOldWeatherInfo{
             }
         }
     }
+    
+    func removeOldLastDateUPD(){
+        let modelCurrent = RealmWeather().realm.objects(LastUPDInfoWeather.self)
+        if modelCurrent.first != nil && modelCurrent.count > 2{
+            try! RealmWeather().realm.write {
+                RealmWeather().realm.delete(modelCurrent.first!)
+            }
+        }
+    }
 }

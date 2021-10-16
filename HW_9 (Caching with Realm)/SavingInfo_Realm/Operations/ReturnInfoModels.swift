@@ -24,4 +24,7 @@ class ReturnInfoModels{
     func returnNewCityName(realm: Realm) -> Results<SearchCityName>{
         return realm.objects(SearchCityName.self)
     }
+    func returnDateLAstUPD(realm: Realm) -> Results<LastUPDInfoWeather>{
+        return realm.objects(LastUPDInfoWeather.self)
+    }
 }

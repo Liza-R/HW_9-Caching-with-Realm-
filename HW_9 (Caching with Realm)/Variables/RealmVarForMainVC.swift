@@ -12,5 +12,6 @@ class RealmVars{
         currentImageRealm = ReturnInfoModels().returnCurrentImage(realm: RealmWeather().realm),
         forecastInfoRealm = ReturnInfoModels().returnForecastInfo(realm: RealmWeather().realm),
         forecastImagesRealm = ReturnInfoModels().returnForecastImages(realm: RealmWeather().realm),
-        saveNewCity = ReturnInfoModels().returnNewCityName(realm: RealmWeather().realm)
+        saveNewCity = ReturnInfoModels().returnNewCityName(realm: RealmWeather().realm),
+        lastUPD = ReturnInfoModels().returnDateLAstUPD(realm: RealmWeather().realm)
 }

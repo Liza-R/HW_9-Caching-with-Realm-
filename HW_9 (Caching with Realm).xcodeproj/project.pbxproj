@@ -44,6 +44,8 @@
 		209FD984271AD5CB00978B9C /* CheckConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD983271AD5CB00978B9C /* CheckConnect.swift */; };
 		209FD986271AD6E600978B9C /* CheckInternetConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD985271AD6E600978B9C /* CheckInternetConnect.swift */; };
 		209FD988271AD8DA00978B9C /* ExtensionForURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD987271AD8D900978B9C /* ExtensionForURLs.swift */; };
+		209FD98C271AF1B100978B9C /* LastUPDInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD98B271AF1B100978B9C /* LastUPDInfo.swift */; };
+		209FD98E271AF2F100978B9C /* LastUpdateInfoDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD98D271AF2F100978B9C /* LastUpdateInfoDate.swift */; };
 		4AAE6A90DF793B9F9FC9362A /* Pods_HW_9__Caching_with_Realm_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +110,8 @@
 		209FD983271AD5CB00978B9C /* CheckConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckConnect.swift; sourceTree = "<group>"; };
 		209FD985271AD6E600978B9C /* CheckInternetConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternetConnect.swift; sourceTree = "<group>"; };
 		209FD987271AD8D900978B9C /* ExtensionForURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionForURLs.swift; sourceTree = "<group>"; };
+		209FD98B271AF1B100978B9C /* LastUPDInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUPDInfo.swift; sourceTree = "<group>"; };
+		209FD98D271AF2F100978B9C /* LastUpdateInfoDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdateInfoDate.swift; sourceTree = "<group>"; };
 		5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9__Caching_with_Realm_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).debug.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).debug.xcconfig"; sourceTree = "<group>"; };
 		E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).release.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).release.xcconfig"; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				200A09A626F788E500D2F60B /* SearchCityName.swift */,
 				2097AC6E2715C3D80033A687 /* CurrentImageObj.swift */,
 				209FD97C271ABCC900978B9C /* ForecastImagesObj.swift */,
+				209FD98B271AF1B100978B9C /* LastUPDInfo.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				2097AC772715CC6D0033A687 /* CheckDataBase.swift */,
 				209FD985271AD6E600978B9C /* CheckInternetConnect.swift */,
 				2047B10426C6B616003B7E64 /* Alerts.swift */,
+				209FD98D271AF2F100978B9C /* LastUpdateInfoDate.swift */,
 			);
 			path = FuncsVC;
 			sourceTree = "<group>";
@@ -550,10 +556,12 @@
 				200A098526F6623000D2F60B /* ForecastWeatherObj.swift in Sources */,
 				209FD986271AD6E600978B9C /* CheckInternetConnect.swift in Sources */,
 				209FD982271AD36800978B9C /* GlobalRxVars.swift in Sources */,
+				209FD98E271AF2F100978B9C /* LastUpdateInfoDate.swift in Sources */,
 				2047B10D26C6B692003B7E64 /* ForecastLoader.swift in Sources */,
 				200A098326F6620700D2F60B /* CurrentWeatherObj.swift in Sources */,
 				2047B11326C6B71B003B7E64 /* WeatherCollectionViewCellAlam.swift in Sources */,
 				2047B11526C6B93F003B7E64 /* SaveRealmWeather.swift in Sources */,
+				209FD98C271AF1B100978B9C /* LastUPDInfo.swift in Sources */,
 				200A098126F6612300D2F60B /* ForecastWeatherStruct.swift in Sources */,
 				2097AC6D2715A2710033A687 /* ImageLoader.swift in Sources */,
 				209FD97D271ABCC900978B9C /* ForecastImagesObj.swift in Sources */,

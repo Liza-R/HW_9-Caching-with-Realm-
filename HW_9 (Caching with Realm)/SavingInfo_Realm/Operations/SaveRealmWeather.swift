@@ -35,6 +35,15 @@ class RealmWeather{
         savingCurrentInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldCurrentImage()
     }
+    
+    func savingLastUPDDate(date: String){
+        let dateUPD = LastUPDInfoWeather()
+        dateUPD.dateLastUPD = date
+        try! realm.write{
+            realm.add(dateUPD)
+        }
+        RemoveOldWeatherInfo().removeOldCurrentImage()
+    }
 
     func savingForecastInfo(uniqDates: [String], allDates: [String], descripts: [String], temps: [String], times: [String]){
         let infoFD = ForecastWeather()

@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 class CheckInternetConnect{
-    func checkIntenet(vc: UIViewController, refreshControl: UIRefreshControl, table: UITableView, uploadNOEmptyCurrentInfo: () -> Void, uploadNOEmptyForecastInfo: () -> Void){
+    func checkIntenet(vc: UIViewController, refreshControl: UIRefreshControl, table: UITableView, uploadNOEmptyCurrentInfo: () -> Void, uploadNOEmptyForecastInfo: () -> Void, lastUPDLabel: UILabel){
         if Connectivity.isConnectedToInternet {
                 print("Yes! internet is available.")
-            CheckDataBase().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo, table: table)
+            CheckDataBase().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo, table: table, lastUPDLabel: lastUPDLabel)
         }else{
             print("No! internet is not available.")
             vc.present(Alerts().alertNotConnect(), animated: true, completion: nil)

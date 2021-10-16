@@ -7,9 +7,10 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 class CheckDataBase{
-    func diaplayLoadApp(curInfoRealm: Results<CurrentWeather>, fcInfoRealm: Results<ForecastWeather>, uploadNOCurInfo: () -> Void, uploadNOFcInfo: () -> Void, table: UITableView){
+    func diaplayLoadApp(curInfoRealm: Results<CurrentWeather>, fcInfoRealm: Results<ForecastWeather>, uploadNOCurInfo: () -> Void, uploadNOFcInfo: () -> Void, table: UITableView, lastUPDLabel: UILabel){
         switch curInfoRealm.isEmpty {
         case true:
             cityNameAlam = "Moscow"
@@ -28,5 +29,7 @@ class CheckDataBase{
         }
         ViewModel().uploadForecastInfo()
         table.reloadData()
+        
+        LastUpdate().lastDate(lastUPDLabel: lastUPDLabel)
     }
 }

@@ -27,14 +27,14 @@ class ViewController: UIViewController {
         city = ""
 
        let disposeBag = DisposeBag()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         weather_Table_Alamofire.addSubview(refreshControl)
         refreshControl.tintColor = .white
 
-        CheckDataBase().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo, table: self.weather_Table_Alamofire)
+        CheckDataBase().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo, table: self.weather_Table_Alamofire, lastUPDLabel: self.lastUPDLabel)
         
         savingCurrentInfoVar.asObservable().subscribe{ status in
             if status.element == true{
@@ -53,11 +53,11 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        CheckInternetConnect().checkIntenet(vc: self, refreshControl: self.refreshControl, table: self.weather_Table_Alamofire, uploadNOEmptyCurrentInfo: uploadNOEmptyCurrentInfo, uploadNOEmptyForecastInfo: uploadNOEmptyForecastInfo)
+        CheckInternetConnect().checkIntenet(vc: self, refreshControl: self.refreshControl, table: self.weather_Table_Alamofire, uploadNOEmptyCurrentInfo: uploadNOEmptyCurrentInfo, uploadNOEmptyForecastInfo: uploadNOEmptyForecastInfo, lastUPDLabel: self.lastUPDLabel)
     }
 
     @objc func refresh(_ sender: AnyObject) {
-        CheckInternetConnect().checkIntenet(vc: self, refreshControl: self.refreshControl, table: self.weather_Table_Alamofire, uploadNOEmptyCurrentInfo: uploadNOEmptyCurrentInfo, uploadNOEmptyForecastInfo: uploadNOEmptyForecastInfo)
+        CheckInternetConnect().checkIntenet(vc: self, refreshControl: self.refreshControl, table: self.weather_Table_Alamofire, uploadNOEmptyCurrentInfo: uploadNOEmptyCurrentInfo, uploadNOEmptyForecastInfo: uploadNOEmptyForecastInfo, lastUPDLabel: self.lastUPDLabel)
         self.refreshControl.endRefreshing()
     }
     
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
                 Alerts().alertCityNotFound(vc: self, cityName: cityNameAlam)
             case 0:
                 RealmWeather().savingNewCity(city: cityNameAlam)
-                CheckDataBase().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo, table: self.weather_Table_Alamofire)
+                CheckDataBase().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo, table: self.weather_Table_Alamofire, lastUPDLabel: self.lastUPDLabel)
             default:
                 print("error to search:", errorLoad)
             }
