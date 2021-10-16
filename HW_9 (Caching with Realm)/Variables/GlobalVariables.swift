@@ -7,4 +7,5 @@
 
 import Foundation
 
-var cityNameAlam: String = ""
+var cityNameAlam: String = "",
+    errorLoad = 0

@@ -36,9 +36,8 @@ class RealmWeather{
         RemoveOldWeatherInfo().removeOldCurrentImage()
     }
 
-    func savingForecastInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], temps: [String], times: [String]){
+    func savingForecastInfo(uniqDates: [String], allDates: [String], descripts: [String], temps: [String], times: [String]){
         let infoFD = ForecastWeather()
-        infoFD.cod = cod
         for i in uniqDates{
             let un_day = UnDayForTableClass()
             un_day.un_date = i

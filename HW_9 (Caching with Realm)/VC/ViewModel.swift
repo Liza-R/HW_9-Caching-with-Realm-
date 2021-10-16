@@ -33,8 +33,7 @@ class ViewModel{
             descript: [String] = [],
             iconLinkAlam: [String] = [],
             data: [String] = [],
-            time: [String] = [],
-            cod: String = ""
+            time: [String] = []
   
         let date = Date(),
         formatter = DateFormatter()
@@ -46,7 +45,6 @@ class ViewModel{
             self.forecast_Info = forecast
             DispatchQueue.main.async {
                 for i in forecast{
-                    cod = i.cod
                     for j in i.list{
                         let denechek = j?.dt_txt.components(separatedBy: " ")
                         if denechek![0] != result_Al{
@@ -61,7 +59,7 @@ class ViewModel{
                     }
                 }
                 ImageLoader().uploadForecastImages(image_urls: iconLinkAlam, all_temps: temp_)
-                RealmWeather().savingForecastInfo(uniqDates: Array(Set(data)).sorted(), allDates: data, cod: cod, descripts: descript, temps: temp_, times: time)
+                RealmWeather().savingForecastInfo(uniqDates: Array(Set(data)).sorted(), allDates: data, descripts: descript, temps: temp_, times: time)
             }
         }
     }

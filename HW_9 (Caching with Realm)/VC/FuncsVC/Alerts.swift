@@ -22,6 +22,7 @@ class Alerts{
          alert.addAction(cancelAction)
          alert.pruneNegativeWidthConstraints()
          vc.present(alert, animated: true, completion: nil)
+        errorLoad = 0
     }
     func alertNotConnect() -> UIAlertController{
         let alert = UIAlertController(title: "Not Connection", message: "Please check your connection and connect the internet", preferredStyle: UIAlertController.Style.actionSheet),
