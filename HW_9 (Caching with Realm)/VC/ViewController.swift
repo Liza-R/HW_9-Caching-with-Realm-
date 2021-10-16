@@ -75,7 +75,7 @@ class ViewController: UIViewController {
             self.descript_Label_Alam.text = "\(i.descr)"
             ic_url = i.icon_url
         }
-        ImageLoader().uploadImage(image_url: ic_url)
+        ImageLoader().uploadCurrentImage(image_url: ic_url)
         for i in RealmVars().currentImageRealm{
             self.icon_Image_Alam.image = UIImage(data: i.icon as Data)
         }
@@ -85,7 +85,8 @@ class ViewController: UIViewController {
         var timeS: [String] = [],
             tempS: [String] = [],
             descrS: [String] = [],
-            iconS: [NSData] = []
+            iconS: [String] = [],
+            iconS_: [NSData] = []
         let inForecast = RealmVars().forecastInfoRealm.last!
         self.uniqDatesForTable.removeAll()
         allDates.removeAll()
@@ -110,10 +111,17 @@ class ViewController: UIViewController {
             timeS.append(inForecast.times[k].time)
             iconS.append(inForecast.icons[k].icon)
         }
+
+        let inForecastImages = RealmVars().forecastImagesRealm.last!
+        
+        for (_, u) in inForecastImages.icons.enumerated(){
+            iconS_.append(u.icon)
+        }
+
         for s in 0...uniqDatesForTable.count - 1{
             for v in 0...allDates.count - 1{
                 if uniqDatesForTable[s] == allDates[v]{
-                    allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[v], icon_Alam: UIImage(data: iconS[v] as Data) ?? .strokedCheckmark, descript_Alam: descrS[v], time_Alam: timeS[v]))
+                    allWeatherInfo_Alam[s].append(LoadingStruct.InfoTableAlam(temper_Alam: tempS[v], icon_Alam: UIImage(data: iconS_[v] as Data) ?? .strokedCheckmark, descript_Alam: descrS[v], time_Alam: timeS[v]))
                 }
             }
         }

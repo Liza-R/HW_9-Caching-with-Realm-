@@ -11,5 +11,6 @@ class RealmVars{
     let currentInfoRealm = ReturnInfoModels().returnCurrentInfo(realm: RealmWeather().realm),
         currentImageRealm = ReturnInfoModels().returnCurrentImage(realm: RealmWeather().realm),
         forecastInfoRealm = ReturnInfoModels().returnForecastInfo(realm: RealmWeather().realm),
+        forecastImagesRealm = ReturnInfoModels().returnForecastImages(realm: RealmWeather().realm),
         saveNewCity = ReturnInfoModels().returnNewCityName(realm: RealmWeather().realm)
 }

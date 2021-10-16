@@ -16,10 +16,11 @@ class ViewModel{
     func uploadCurrentInfo(){
         CurrentLoader().loadCurrentInfo { current in
             self.current_Info = current
+            let nf = "Not Found"
             DispatchQueue.main.async {
                 for i in current{
                      for j in i.weather{
-                         RealmWeather().savingCurrentInfo(descr: j?.description ?? "Not Found", icon_url: j?.icon ?? "Not Found", cityName: "\(String(describing: Int(i.main!.temp - 273.15)))°C \(i.name)", tempFL: "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C", tempTMax: "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C", tempTMin: "Min: \(String(describing: Int(i.main!.temp_min - 273.15)))°C")
+                         RealmWeather().savingCurrentInfo(descr: j?.description ?? nf, icon_url: j?.icon ?? nf, cityName: "\(String(describing: Int(i.main!.temp - 273.15)))°C \(i.name)", tempFL: "Feels like: \(String(describing: Int(i.main!.feels_like - 273.15)))°C", tempTMax: "Max: \(String(describing: Int(i.main!.temp_max - 273.15)))°C", tempTMin: "Min: \(String(describing: Int(i.main!.temp_min - 273.15)))°C")
                         }
                     }
                 }
@@ -30,7 +31,6 @@ class ViewModel{
         var temp_: [String] = [],
             descript: [String] = [],
             iconLinkAlam: [String] = [],
-            iconsAlam: [NSData] = [],
             data: [String] = [],
             time: [String] = [],
             cod: String = ""
@@ -59,27 +59,8 @@ class ViewModel{
                         }
                     }
                 }
-                for (_, j) in iconLinkAlam.enumerated(){
-                    let url_icon = URLs().url_icon_upload.replacingOccurrences(of: "PICTURENAME", with: "\(j)")
-                    AF.request(URL(string: url_icon)!, method: .get).response{ response in
-                        switch response.result {
-                            case .success(let responseData):
-                                let ic = UIImage(data: responseData!, scale: 1) ?? .checkmark
-                                iconsAlam.append(NSData(data: ic.pngData()!))
-                                var moving = false
-                                if iconsAlam.count == temp_.count{
-                                    moving = true
-                                }
-                                if moving == true{
-                                    var uniqDays = Array(Set(data))
-                                    uniqDays = uniqDays.sorted()
-                                    RealmWeather().savingForecastInfo(uniqDates: uniqDays, allDates: data, cod: cod, descripts: descript, icons: iconsAlam, temps: temp_, times: time)
-                                }
-                            case .failure(let error):
-                                print("error--->",error)
-                        }
-                    }
-                }
+                ImageLoader().uploadForecastImages(image_urls: iconLinkAlam, all_temps: temp_)
+                RealmWeather().savingForecastInfo(uniqDates: Array(Set(data)).sorted(), allDates: data, cod: cod, descripts: descript, icons: iconLinkAlam, temps: temp_, times: time)
             }
         }
     }

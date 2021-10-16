@@ -31,9 +31,7 @@ class RealmWeather{
     
     func savingCurrentImage(icon: NSData){
         let image = CurrentImage()
-
         image.icon = icon
-        
         try! realm.write{
             realm.add(image)
         }
@@ -41,7 +39,7 @@ class RealmWeather{
         RemoveOldWeatherInfo().removeOldCurrentImage()
     }
 
-    func savingForecastInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], icons: [NSData], temps: [String], times: [String]){
+    func savingForecastInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], icons: [String], temps: [String], times: [String]){
         let infoFD = ForecastWeather()
 
         infoFD.cod = cod
@@ -81,8 +79,21 @@ class RealmWeather{
         try! realm.write{
             realm.add(infoFD)
         }
-        savingForecastInfoVar.accept(true)
         RemoveOldWeatherInfo().removeOldForecastInfo()
+    }
+    
+    func savingForecastImages(icons: [NSData]){
+        let infoFIs = ForecastImages()
+        for i in icons{
+            let image = IconsForForecastClass()
+            image.icon = i
+            infoFIs.icons.append(image)
+        }
+        try! realm.write{
+            realm.add(infoFIs)
+        }
+        savingForecastInfoVar.accept(true)
+        RemoveOldWeatherInfo().removeOldForecastImage()
     }
     
     func savingNewCity(city: String){

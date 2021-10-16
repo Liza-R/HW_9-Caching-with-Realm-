@@ -39,6 +39,7 @@
 		2097AC712715C71C0033A687 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC702715C71C0033A687 /* GlobalVariables.swift */; };
 		2097AC782715CC6D0033A687 /* FuncsForMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC772715CC6D0033A687 /* FuncsForMainVC.swift */; };
 		2097AC7E2715D4F40033A687 /* RealmVarForMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2097AC7D2715D4F40033A687 /* RealmVarForMainVC.swift */; };
+		209FD97D271ABCC900978B9C /* ForecastImagesObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD97C271ABCC900978B9C /* ForecastImagesObj.swift */; };
 		4AAE6A90DF793B9F9FC9362A /* Pods_HW_9__Caching_with_Realm_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		2097AC702715C71C0033A687 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		2097AC772715CC6D0033A687 /* FuncsForMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuncsForMainVC.swift; sourceTree = "<group>"; };
 		2097AC7D2715D4F40033A687 /* RealmVarForMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmVarForMainVC.swift; sourceTree = "<group>"; };
+		209FD97C271ABCC900978B9C /* ForecastImagesObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastImagesObj.swift; sourceTree = "<group>"; };
 		5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9__Caching_with_Realm_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).debug.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).debug.xcconfig"; sourceTree = "<group>"; };
 		E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).release.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).release.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				200A098226F6620700D2F60B /* CurrentWeatherObj.swift */,
 				200A09A626F788E500D2F60B /* SearchCityName.swift */,
 				2097AC6E2715C3D80033A687 /* CurrentImageObj.swift */,
+				209FD97C271ABCC900978B9C /* ForecastImagesObj.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				2047B11526C6B93F003B7E64 /* SaveRealmWeather.swift in Sources */,
 				200A098126F6612300D2F60B /* ForecastWeatherStruct.swift in Sources */,
 				2097AC6D2715A2710033A687 /* ImageLoader.swift in Sources */,
+				209FD97D271ABCC900978B9C /* ForecastImagesObj.swift in Sources */,
 				2097AC712715C71C0033A687 /* GlobalVariables.swift in Sources */,
 				2047B11126C6B6EF003B7E64 /* WeatherAlamofireTableViewCell.swift in Sources */,
 				2047B10526C6B616003B7E64 /* VC_Alerts.swift in Sources */,

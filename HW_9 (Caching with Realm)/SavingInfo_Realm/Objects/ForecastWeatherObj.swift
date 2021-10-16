@@ -25,7 +25,7 @@ class TempForTableClass: Object {
     @objc dynamic var temp = ""
 }
 class IconForTableClass: Object {
-    @objc dynamic var icon = NSData()
+    @objc dynamic var icon = ""//NSData()
 }
 
 class ForecastWeather: Object{
