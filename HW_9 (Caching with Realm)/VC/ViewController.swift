@@ -10,6 +10,7 @@ import RxCocoa
 import RxSwift
 
 class ViewController: UIViewController {
+    @IBOutlet weak var lastUPDLabel: UILabel!
     @IBOutlet weak var searchTF: UITextField!
     @IBOutlet weak var icon_Image_Alam: UIImageView!
     @IBOutlet weak var temp_Label_Alam: UILabel!
