@@ -43,6 +43,7 @@
 		209FD982271AD36800978B9C /* GlobalRxVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD981271AD36800978B9C /* GlobalRxVars.swift */; };
 		209FD984271AD5CB00978B9C /* CheckConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD983271AD5CB00978B9C /* CheckConnect.swift */; };
 		209FD986271AD6E600978B9C /* CheckInternetConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD985271AD6E600978B9C /* CheckInternetConnect.swift */; };
+		209FD988271AD8DA00978B9C /* ExtensionForURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209FD987271AD8D900978B9C /* ExtensionForURLs.swift */; };
 		4AAE6A90DF793B9F9FC9362A /* Pods_HW_9__Caching_with_Realm_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,7 @@
 		209FD981271AD36800978B9C /* GlobalRxVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRxVars.swift; sourceTree = "<group>"; };
 		209FD983271AD5CB00978B9C /* CheckConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckConnect.swift; sourceTree = "<group>"; };
 		209FD985271AD6E600978B9C /* CheckInternetConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInternetConnect.swift; sourceTree = "<group>"; };
+		209FD987271AD8D900978B9C /* ExtensionForURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionForURLs.swift; sourceTree = "<group>"; };
 		5A9E5ECB8D6A6A872782223C /* Pods_HW_9__Caching_with_Realm_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HW_9__Caching_with_Realm_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE37890C5E113748B869AF02 /* Pods-HW_9 (Caching with Realm).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).debug.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).debug.xcconfig"; sourceTree = "<group>"; };
 		E325160C01692D4969180AF4 /* Pods-HW_9 (Caching with Realm).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HW_9 (Caching with Realm).release.xcconfig"; path = "Target Support Files/Pods-HW_9 (Caching with Realm)/Pods-HW_9 (Caching with Realm).release.xcconfig"; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				2047B10626C6B634003B7E64 /* URLs.swift */,
 				200A098F26F667CE00D2F60B /* ChangeURLs.swift */,
+				209FD987271AD8D900978B9C /* ExtensionForURLs.swift */,
 			);
 			path = URLs;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				2097AC782715CC6D0033A687 /* CheckDataBase.swift in Sources */,
 				2047B0D426C6B4EF003B7E64 /* AppDelegate.swift in Sources */,
 				200A09A726F788E500D2F60B /* SearchCityName.swift in Sources */,
+				209FD988271AD8DA00978B9C /* ExtensionForURLs.swift in Sources */,
 				200A097F26F660CB00D2F60B /* CurrentWeatherStrust.swift in Sources */,
 				200A098526F6623000D2F60B /* ForecastWeatherObj.swift in Sources */,
 				209FD986271AD6E600978B9C /* CheckInternetConnect.swift in Sources */,
