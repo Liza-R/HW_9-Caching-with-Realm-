@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class FuncsVC{
+class CheckDataBase{
     func diaplayLoadApp(curInfoRealm: Results<CurrentWeather>, fcInfoRealm: Results<ForecastWeather>, uploadNOCurInfo: () -> Void, uploadNOFcInfo: () -> Void){
         switch curInfoRealm.isEmpty {
         case true:

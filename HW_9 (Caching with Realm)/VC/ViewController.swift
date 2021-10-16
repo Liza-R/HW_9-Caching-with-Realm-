@@ -33,8 +33,9 @@ class ViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         weather_Table_Alamofire.addSubview(refreshControl)
         refreshControl.tintColor = .white
+
+        CheckDataBase().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo)
         
-        FuncsVC().diaplayLoadApp(curInfoRealm: RealmVars().currentInfoRealm, fcInfoRealm: RealmVars().forecastInfoRealm, uploadNOCurInfo: uploadNOEmptyCurrentInfo, uploadNOFcInfo: uploadNOEmptyForecastInfo)
         savingCurrentInfoVar.asObservable().subscribe{ status in
             if status.element == true{
                 self.uploadNOEmptyCurrentInfo()
@@ -45,15 +46,20 @@ class ViewController: UIViewController {
             .subscribe { status in
             if status.element == true{
                 self.uploadNOEmptyForecastInfo()
-                    
             }
         }.disposed(by: disposeBag)
         
         self.weather_Table_Alamofire.dataSource = self
         self.weather_Table_Alamofire.reloadData()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        CheckInternetConnect().checkIntenet(vc: self, refreshControl: self.refreshControl)
+    }
 
     @objc func refresh(_ sender: AnyObject) {
+        CheckInternetConnect().checkIntenet(vc: self, refreshControl: self.refreshControl)
         uploadNOEmptyCurrentInfo()
         ViewModel().uploadCurrentInfo()
         uploadNOEmptyForecastInfo()

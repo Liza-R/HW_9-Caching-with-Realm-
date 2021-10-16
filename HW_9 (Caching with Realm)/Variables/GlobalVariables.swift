@@ -6,8 +6,5 @@
 //
 
 import Foundation
-import RxCocoa
 
-var cityNameAlam: String = "",
-    savingCurrentInfoVar = BehaviorRelay<Bool>(value: false),
-    savingForecastInfoVar = BehaviorRelay<Bool>(value: false)
+var cityNameAlam: String = ""

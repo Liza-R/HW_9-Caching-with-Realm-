@@ -23,6 +23,13 @@ class Alerts{
          alert.pruneNegativeWidthConstraints()
          vc.present(alert, animated: true, completion: nil)
     }
+    func alertNotConnect() -> UIAlertController{
+        let alert = UIAlertController(title: "Not Connection", message: "Please check your connection and connect the internet", preferredStyle: UIAlertController.Style.actionSheet),
+        cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel)
+         alert.addAction(cancelAction)
+         alert.pruneNegativeWidthConstraints()
+        return alert
+    }
 }
 extension UIAlertController {
     func pruneNegativeWidthConstraints() {

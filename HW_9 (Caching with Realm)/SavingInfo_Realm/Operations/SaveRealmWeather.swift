@@ -14,13 +14,11 @@ class RealmWeather{
     
     func savingCurrentInfo(descr: String, cityName: String, tempFL: String, tempTMax: String, tempTMin: String){
         let infoT = CurrentWeather()
-        
         infoT.cityNameTemp = cityName
         infoT.tempFL = tempFL
         infoT.tempTMax = tempTMax
         infoT.tempTMin = tempTMin
         infoT.descr = descr
-        
         try! realm.write{
             realm.add(infoT)
         }
@@ -40,9 +38,7 @@ class RealmWeather{
 
     func savingForecastInfo(uniqDates: [String], allDates: [String],cod: String, descripts: [String], temps: [String], times: [String]){
         let infoFD = ForecastWeather()
-
         infoFD.cod = cod
-
         for i in uniqDates{
             let un_day = UnDayForTableClass()
             un_day.un_date = i
@@ -68,7 +64,6 @@ class RealmWeather{
             time.time = i
             infoFD.times.append(time)
         }
-
         try! realm.write{
             realm.add(infoFD)
         }

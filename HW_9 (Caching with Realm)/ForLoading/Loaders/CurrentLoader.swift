@@ -13,7 +13,7 @@ class CurrentLoader{
         AF.request(URL(string: URLs().url_current_uploadAlam)!)
         .validate()
             .responseDecodable(of: CurrentWeatherStruct.Current_Info.self) { (response) in
-          guard let currentInfo = response.value else { return }
+        guard let currentInfo = response.value else { return }
                 completion([currentInfo])
         }
     }
